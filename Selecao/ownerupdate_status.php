@@ -1,0 +1,6 @@
+<?php
+include 'connection.php';
+
+$id1=$_GET['id'];
+mysqli_query($con,"UPDATE `owner_registration` SET `aproval_status`='1' WHERE owner_id='$id1'");
+?>
