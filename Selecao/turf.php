@@ -1,11 +1,12 @@
 <?php
+session_start();
 include 'connection.php';
 if(isset($_POST['submit']))
 {
     $turf_name=$_POST['turf_name'];
     $turf_place=$_POST['turf_place'];
     $amount = $_POST['price'];
-    $payment_id = $_POST['payment'];
+    
     
     $pic=$_FILES['f1']['name'];
     if($pic!="")
@@ -20,10 +21,12 @@ if(isset($_POST['submit']))
     {
       echo"<script> alert('try again')</script>";
     }
+    $id1=$_SESSION['id'];
+    $sql="INSERT INTO `turf`( `turf_name`, `turf_place`, `image`, `amount`, `owner_id`) VALUES ('$turf_name','$turf_place','$filenew','$amount','$id1')";
+    $amt=mqsqli_insert_id($con);
     
-   
-    $sql = "INSERT INTO `turf`( `turf_name`, `turf_place`, `image`, `amount`, `payment_id`) VALUES ('$turf_name','$turf_place','$filenew','$amount','$payment_id')";
-    if (mysqli_query($con, $sql)) {
+    if (mysqli_query($con, $sql))
+     {
         echo " <script>alert('Data uploaded successfully.')</script>";
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($con);
@@ -170,12 +173,12 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar"> 
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
-          <li><a class="nav-link scrollto  " href="#profile">profile</a></li>
-          <li><a class="nav-link scrollto" href="turf.php"> upload turf</a></li>
+          <li><a class="nav-link scrollto " href="ownerhome.php"> Home </a></li>
+          <li><a class="nav-link scrollto  " href="ownerprofile.php"> view profile</a></li>
+          <li><a class="nav-link scrollto active" href="turf.php"> register turf</a></li>
           <li><a class="nav-link scrollto" href="view_turf.php"> view turf</a></li>
+          <li><a class="nav-link scrollto  " href="viewbooking_owner.php"> view booked turf </a></li>
           
-          <li><a class="nav-link scrollto" href="change_password.php"> change password </a></li>
         <li><a class="top" href="login.php">logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -236,7 +239,7 @@ border-bottom-right-radius: .3rem;
             <table class="table table-bordered">
                 <div class="form-group">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">turf name :</label>
+                        <label for="exampleInputEmail1"> turf name :</label>
                         <input type="text" name="turf_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your turf name*" width="25px">
                         <small id="emailHelp"  class="form-text text-muted"></small>
                       </div><br>
@@ -244,21 +247,18 @@ border-bottom-right-radius: .3rem;
                         <label for="exampleInputPassword1"> turf place :</label>
                         <input type="text" name="turf_place" class="form-control" id="exampleInputPassword1" placeholder="enter your turf place *">
                       </div><br>
-                      <label for="exampleInputEmail1"> price:</label>
+                      <label for="exampleInputEmail1"> price : </label>
                       <input type="text" name="price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your price *" width="25px">
                       <small id="emailHelp" class="form-text text-muted"></small>
                     </div><br>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Payment id:</label>
-                      <input type="text" name="payment" class="form-control" id="exampleInputPassword1" placeholder="">
-                    </div><br>
+                    
                       <div class="form-group">
-                        <label for="exampleFormControlFile1">Example file input</label>
+                        <label for="exampleFormControlFile1"> Example file input </label>
                         <input type="file" name="f1" class="" id="" accpet=".jpg, .jpeg, .pdf" value="">
                       </div><br>
 
                       
-                      <button type="submit" class="btn btn-primary" name="submit">Submit</button><br>
+                      <button type="submit" class="btn btn-primary" name="submit"> Submit </button><br>
                                 </div>
             </table>
             

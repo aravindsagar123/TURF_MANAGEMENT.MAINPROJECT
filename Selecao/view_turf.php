@@ -82,6 +82,10 @@ border-bottom-right-radius: .3rem;
     backgroung-color:orange;
     transtion:0.5s;
 }
+th,td,tr{
+  text-align:center;
+  padding-top:20px;
+}
     </style>
 
   <meta charset="utf-8">
@@ -134,13 +138,12 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
-          <li><a class="nav-link scrollto " href=""> profile </a></li>
-          <li><a class="nav-link scrollto" href=""> upload turf </a></li>
-          <li><a class="nav-link scrollto" href="view_turf.php"> view turf </a></li>
-          
-          <li><a class="nav-link scrollto" href="change_password.php"> change password </a></li>
-        <li><a class="top" href="login.php">logout</a> <li>
+          <li><a class="nav-link scrollto active" href="ownerhome.php"> Home </a></li>
+          <li><a class="nav-link scrollto " href="ownerprofile.php"> view profile </a></li>
+          <li><a class="nav-link scrollto" href="turf.php"> register turf </a></li>
+          <li><a class="nav-link scrollto active " href="view_turf.php"> viewturf </a></li>
+          <li><a class="nav-link scrollto " href="viewbooking_owner.php"> view booked turf</a></li>
+        <li><a class="top" href="logout.php">logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -197,12 +200,12 @@ border-bottom-right-radius: .3rem;
 
 <section id="turf">
 <div class="one">
-    <center><table class="table table-bordered">
+    <center><table class="table table-bordered" style="width:95%;">
         <tr>
             <th> turf name  </th>
             <th> turf place  </th>
             <th> price  </th>
-            <th> payment id  </th>
+           
             <th> image </th>
             
 <?php
@@ -213,7 +216,7 @@ while($row= mysqli_fetch_assoc($data))
         <td><?php echo $row['turf_name'];?></td>
         <td><?php echo $row['turf_place'];?></td>
         <td><?php echo $row['amount'];?></td>
-        <td><?php echo $row['payment_id'];?></td>
+        
       
         <td><img src="./images/<?php echo $row['image'];?>"height="100px" width="100px" alt="image not found"></td>
 </tr>
@@ -236,7 +239,7 @@ while($row= mysqli_fetch_assoc($data))
     <!-- End Portfolio Section -->
 
     <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
+    <!-- End Testimonials Section -->
 
     <!-- ======= Pricing Section ======= -->
     <!-- End Pricing Section -->

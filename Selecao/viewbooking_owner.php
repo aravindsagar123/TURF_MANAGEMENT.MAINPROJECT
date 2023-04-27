@@ -1,36 +1,23 @@
 <?php
 session_start();
-include "connection.php";
-    $id1 = $_SESSION['id'];
-    $data = mysqli_query($con,"SELECT * FROM `login` WHERE login_id='$id1'");
-    $row = mysqli_fetch_assoc($data);
-    if(isset($_POST['submit']))
-     {
-        $password = $_POST['old_password'];
-        $new_password = $_POST['new_password'];
-        $hash = password_hash($new_password, PASSWORD_DEFAULT);
-        if(password_verify($password,$row['password']) )
-        {
-            $sql = mysqli_query($con, "UPDATE login SET password = '$hash' WHERE login_id='$id1'");
-            if ($sql)
-             {
-                echo"<script>alert('Password updated successfully!')</script>";
-            }
-             else
-             {
-                echo"Error updating password:";
-            }
-        } 
-        else 
-        {
-            echo "Old password does not match. Please try again.";
-        }
-    }
+include 'connection.php';
+if(!isset($_SESSION['id']))
+{
+    header('location:login.php');
+}
+else
+{
+    $id1=$_SESSION['id'];
+    $sql=mysqli_query($con,"SELECT booking.booking_id, booking.from_date, booking.to_date, customer_registration.customer_name, customer_registration.contact, turf.turf_name, payment.status,payment.amount FROM booking 
+    INNER JOIN customer_registration  ON booking.customer_id = customer_registration.customer_id
+    INNER JOIN turf  ON booking.turf_id = turf.turf_id
+    INNER JOIN payment  ON booking.payment_id = payment.payment_id  WHERE owner_id='$id1'");
 
-$con->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <style>
     sp1{
@@ -108,6 +95,9 @@ border-bottom-right-radius: .3rem;
     backgroung-color:orange;
     transtion:0.5s;
 }
+th,td,tr{
+    text-align:center;
+}
     </style>
 
   <meta charset="utf-8">
@@ -160,14 +150,13 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="adminhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customertable.php"> customer </a></li>
-          <li><a class="nav-link scrollto" href="ownertable.php"> owner </a></li>
-          <li><a class="nav-link scrollto" href="feedbacktable.php"> feedback </a></li>
-          <li><a class="nav-link scrollto" href="viewturf_admin.php"> Turf </a></li>
-          <li><a class="nav-link scrollto  " href="send_notification.php"> send notification </a></li>
-          <li><a class="nav-link scrollto active" href="change_password.php"> change password </a></li>
-        <li><a class="top" href="logout.php">logout</a> <li>
+          <li><a class="nav-link scrollto" href="ownerhome.php"> Home </a></li>
+          <li><a class="nav-link scrollto " href="ownerprofile.php"> view  profile </a></li>
+          <li><a class="nav-link scrollto" href="turf.php"> register turf </a></li>
+          <li><a class="nav-link scrollto" href="view_turf.php"> view turf  </a></li>
+                    <li><a class="nav-link scrollto active " href="viewbooking_owner.php"> view booked turfs</a></li>
+          
+        <li><a class="top" href="logout.php">Logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -182,8 +171,8 @@ border-bottom-right-radius: .3rem;
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown"> Change Your Password </span></h2>
-          <p class="animate__animated fanimate__adeInUp">" scroll down to select different password "</p>
+          <h2 class="animate__animated animate__fadeInDown">BOOKED TURFS </span></h2>
+          <p class="animate__animated fanimate__adeInUp">" scroll down to see booked turf models . "</p>
           <a href="#main" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
@@ -222,19 +211,40 @@ border-bottom-right-radius: .3rem;
 
   <main id="main">
 <section id="main">
+    <div class="container">
+        <table class="table table-bordered">
+            <tr>
+                <th> BOOKING ID </th>
+                <th> TURF NAME </th>
+                <th> FROM DATE </th>
+                <th> TO DATE </th>
+                <th> CUSTOMER NAME </th>
+                <th> CUSTOMER NUMBER  </th>
+                <th> AMOUNT </th>
+                <th>  PAYMENT STATUS </th>
 
-<div class="container">
-	<form method="POST">
-    <div class="card" style="width:550px; margin-left:250px;">
-    <h2><center>Change Password</center></h2><br>
-		<label for="current_password">Current Password:</label>
-		<input type="password" name="old_password" placeholder="enter your old password *" required><br>
-		<label for="new_password">New Password:</label>
-		<input type="password" name="new_password" placeholder="enter your new password *"required><br>
-		<button class="btn btn-primary" name="submit" value="submit" type="submit" > submit </button>
+</tr>
+<?php
+     while($row=mysqli_fetch_assoc($sql))
+     {
+     ?>
+     <tr>
+        <td><?php echo $row['booking_id'];?></td>
+        <td><?php echo $row['turf_name'];?></td>
+        <td><?php echo $row['from_date'];?></td>
+        <td><?php echo $row['to_date'];?></td>
+        <td><?php echo $row['customer_name'];?></td>
+        <td><?php echo $row['contact'];?></td>
+        <td><?php echo $row['amount'];?></td>
+        <td><?php echo $row['status'];?></td>
+     </tr>
+      <?php
+     }
+     ?>
+     </table>
+    </div>
 
-	</form>
-</div>
+        
 </section>
     <!-- ======= About Section ======= -->
     <!-- End About Section -->
@@ -307,3 +317,4 @@ border-bottom-right-radius: .3rem;
 </body>
 
 </html>
+<?php } ?>

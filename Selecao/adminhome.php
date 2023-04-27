@@ -1,3 +1,11 @@
+<!-- <?php
+// include 'connection.php';
+// if(!isset($_SESSION['id']))
+// {
+//   header('location:login.php');
+// }
+// var_dump($_SESSION['id']);
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,12 +139,13 @@ border-bottom-right-radius: .3rem;
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customertable.php"> customer </a></li>
-          <li><a class="nav-link scrollto" href="ownertable.php"> owner </a></li>
-          <li><a class="nav-link scrollto" href="feedbacktable.php"> feedback </a></li>
-          <li><a class="nav-link scrollto" href="#contact"> turf </a></li>
-          <li><a class="nav-link scrollto" href="change_password.php"> change password </a></li>
-        <li><a class="top" href="login.php">logout</a> <li>
+          <li><a class="nav-link scrollto " href="customertable.php"> Customer </a></li>
+          <li><a class="nav-link scrollto" href="ownertable.php"> Owner </a></li>
+          <li><a class="nav-link scrollto" href="feedbackadmin.php"> Feedback </a></li>
+          <li><a class="nav-link scrollto" href="view_turf.php"> Turf </a></li>
+          <li><a class="nav-link scrollto" href="send_notification.php">Send notification </a></li>
+          <li><a class="nav-link scrollto" href="change_password.php"> Change password </a></li>
+        <li><a class="top" href="logout.php">Logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

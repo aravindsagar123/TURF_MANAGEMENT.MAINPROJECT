@@ -15,7 +15,8 @@ $data=mysqli_query($con,"SELECT * FROM `login` WHERE username='$username' ");
         $type = $row['type'];
         if ($count==1 && $type == 'admin' && $hash==$password)
         {
-          $_SESSION['id']=$_row['login_id'];
+          $_SESSION['id']=$row['login_id'];
+          $_SESSION['username']=$row['email'];
           $id=$_SESSION['id'];
             header("location:adminhome.php");
         }
@@ -204,12 +205,10 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
           
-          <li><a class="nav-link scrollto" href="#about">Login</a></li>
-          <li><a class="nav-link scrollto" href="#team"></a></li>
+          <li><a class="nav-link scrollto" href="login.php">Login</a></li>
           
-          <li><a class="nav-link scrollto" href="#contact"> </a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -269,18 +268,18 @@ border-bottom-right-radius: .3rem;
     <div class="card" style="width:400px;margin-left:250px;">
       <div class="card-title">
       <form method="POST" required >
-        <h2> login form  </h2>  
+        <h2 style="padding-top:10px;"><center> Login Form </center>  </h2>  
         <form>  
-            <div class="form-group"> <label for="email"> User Name</label> <input type="email" class="form-control" name="username" placeholder="Enter username * " style="width:350px" required> </div> <br> 
-            <div class="form-group"> <label for="password"> Password</label> <input type="password" class="form-control" name="password" placeholder="Enter password *" style="width:350px" required> </div> <br> 
+            <div class="form-group"> <label for="email" style="padding-top:10px;"> User Name</label> <input type="email" class="form-control" name="username" placeholder="Enter username * " style="width:350px" required> </div> <br> 
+            <div class="form-group"> <label for="password" style="padding-top:10px;"> Password</label> <input type="password" class="form-control" name="password" placeholder="Enter password *" style="width:350px" required> </div> <br> 
             <select class="form-select" aria-label="Default select example" name="type" style="width:350px" >
   <option selected> select type </option>
   <option value="admin">admin</option>
   <option value="customer">customer</option>
   <option value="owner">owner</option>
 </select><br>
-            <div class="checkbox"> <label><input type="checkbox"> Remember me</label> </div>
-             <button type="submit" class="btn btn-primary p-1" name="submit"> Submit </button> </form> <br> 
+            <div class="checkbox"> <label><input type="checkbox"> Remember me</label> </div><br>
+             <button type="submit" class="btn btn-primary p-1" name="submit" > Submit </button> </form> <br> 
            <div class="btn">
            <a href="customer_registration.php"> <button class="btn btn-primary p-1" id="bt1"> customer </button></a>
            <a href="owner_registration.php"> <button class="btn btn-primary p-1" id="bt2"> owner</button></a>

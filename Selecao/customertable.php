@@ -152,13 +152,14 @@ table,tr,th,td
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="#hero"> Home </a></li>
+          <li><a class="nav-link scrollto " href="adminhome.php"> Home </a></li>
           <li><a class="nav-link scrollto active " href="customertable.php"> customer </a></li>
           <li><a class="nav-link scrollto" href="ownertable.php"> owner </a></li>
           <li><a class="nav-link scrollto" href="feedbacktable.php"> feedback </a></li>
-          <li><a class="nav-link scrollto" href="#contact"> turf </a></li>
-          <li><a class="nav-link scrollto" href="#contact"> change password </a></li>
-        <li><a class="top" href="login.php">logout</a> <li>
+          <li><a class="nav-link scrollto" href="viewturf_admin.php"> Turf </a></li>
+          <li><a class="nav-link scrollto  " href="send_notification.php">send notification</a></li>
+          <li><a class="nav-link scrollto" href="change_password.php"> change password </a></li>
+        <li><a class="top" href="logout.php">logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

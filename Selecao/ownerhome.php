@@ -131,11 +131,13 @@ border-bottom-right-radius: .3rem;
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
-          <li><a class="nav-link scrollto " href="ownerprofile.php"> Profile </a></li>
+          <li><a class="nav-link scrollto " href="ownerprofile.php">view  Profile </a></li>
           <li><a class="nav-link scrollto" href="turf.php"> Register Turf </a></li>
           <li><a class="nav-link scrollto" href="view_turf.php"> View Turf </a></li>
-          <li><a class="nav-link scrollto" href="#contact"> Change Password </a></li>
-        <li><a class="top" href="login.php">Logout</a> <li>
+          <li><a class="nav-link scrollto  " href="viewbooking_owner.php">view booked turf </a></li>
+          <li><a class="nav-link scrollto" href="viewbooking_owner.php"> view booking </a></li>
+        
+        <li><a class="top" href="logout.php">Logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

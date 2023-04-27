@@ -173,6 +173,7 @@ table {
     {
 
       border:1px solid black;
+      justify-content:space-evenly;
 
     }
 
@@ -250,8 +251,12 @@ table {
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="userhome.php">Home</a></li>
-          
+          <li><a class="nav-link scrollto" href="userhome.php">Home</a></li>
+          <li><a class="nav-link scrollto" href="customer_profile.php">view profile </a></li>
+          <li><a class="nav-link scrollto active" href="booking_customer.php">view turf </a></li>
+          <li><a class="nav-link scrollto" href="notificationcustomer.php">view notification </a></li>
+          <li><a class="nav-link scrollto" href="feedback.php">feedback</a></li>
+         
           <li><a class="nav-link scrollto" href="login.php">Logout</a></li>
           
         </ul>
@@ -268,7 +273,7 @@ table {
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown"> <I> booking page </i></span></h2>
+          <h2 class="animate__animated animate__fadeInDown"> <I> select turfs down below </i></span></h2>
           <p class="animate__animated fanimate__adeInUp">"select from varities of different turfs "</p>
           <a href="#book" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
@@ -317,7 +322,7 @@ table {
         ?>
         <div class="container">
           
-         <div class="card" style="width:50%; margin-left:50px; justify-content: space-evenly;">
+         <div class="card" style="width:50%; margin-left:200px; justify-content: space-evenly;">
     <div class="form-group mt-4">
     <?php echo'<img src="./images/' . $row["image"] . '" alt="customer image" height="200px" width="200px" class="center" >';?>
      </div>
@@ -344,12 +349,13 @@ table {
      </div>
      <div class="form-group mt-4">
      <div class="mov">
-     <a href="booknow.php"><button class="btn" style="padding-left:25px; background-color:skyblue;" > book now </button></a>
+     <a  class="btn btn-primary" href="booknow.php?id=<?php echo $row['turf_id']?>">book now </a>
        </div>
        </div>
         
        </div>
        </div>
+      
        </div>
         <?php
 			}

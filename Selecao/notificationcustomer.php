@@ -1,36 +1,27 @@
 <?php
 session_start();
-include "connection.php";
-    $id1 = $_SESSION['id'];
-    $data = mysqli_query($con,"SELECT * FROM `login` WHERE login_id='$id1'");
-    $row = mysqli_fetch_assoc($data);
-    if(isset($_POST['submit']))
-     {
-        $password = $_POST['old_password'];
-        $new_password = $_POST['new_password'];
-        $hash = password_hash($new_password, PASSWORD_DEFAULT);
-        if(password_verify($password,$row['password']) )
-        {
-            $sql = mysqli_query($con, "UPDATE login SET password = '$hash' WHERE login_id='$id1'");
-            if ($sql)
-             {
-                echo"<script>alert('Password updated successfully!')</script>";
-            }
-             else
-             {
-                echo"Error updating password:";
-            }
-        } 
-        else 
-        {
-            echo "Old password does not match. Please try again.";
-        }
-    }
+include 'connection.php';
+if(!isset($_SESSION['id']))
+{
+    header('location:login.php');
+}
+else
+{
+    $id=$_SESSION['id'];
+    $sql = "SELECT * FROM `notification` WHERE  customer_id='$id'";
 
-$con->close();
-?>
+$result = mysqli_query($con, $sql);
+
+
+if (mysqli_num_rows($result) > 0)
+ {
+  
+
+}
+?> 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <style>
     sp1{
@@ -108,6 +99,9 @@ border-bottom-right-radius: .3rem;
     backgroung-color:orange;
     transtion:0.5s;
 }
+.notification{
+    text-align:center;
+}
     </style>
 
   <meta charset="utf-8">
@@ -160,14 +154,13 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="adminhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customertable.php"> customer </a></li>
-          <li><a class="nav-link scrollto" href="ownertable.php"> owner </a></li>
-          <li><a class="nav-link scrollto" href="feedbacktable.php"> feedback </a></li>
-          <li><a class="nav-link scrollto" href="viewturf_admin.php"> Turf </a></li>
-          <li><a class="nav-link scrollto  " href="send_notification.php"> send notification </a></li>
-          <li><a class="nav-link scrollto active" href="change_password.php"> change password </a></li>
-        <li><a class="top" href="logout.php">logout</a> <li>
+          <li><a class="nav-link scrollto " href="userhome.php"> Home </a></li>
+          <li><a class="nav-link scrollto " href="customer_profile"> view profile </a></li>
+          <li><a class="nav-link scrollto" href="booking_customer.php">  view turf </a></li>
+          <li><a class="nav-link scrollto active" href="notificationcustomer.php">view notification </a></li>
+          <li><a class="nav-link scrollto" href="feedback.php"> Feedback </a></li>
+          
+        <li><a class="top" href="logout.php">Logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -182,9 +175,9 @@ border-bottom-right-radius: .3rem;
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown"> Change Your Password </span></h2>
-          <p class="animate__animated fanimate__adeInUp">" scroll down to select different password "</p>
-          <a href="#main" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
+          <h2 class="animate__animated animate__fadeInDown"> View notification </span></h2>
+          <p class="animate__animated fanimate__adeInUp">" scroll down to see the notification  "</p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
 
@@ -222,20 +215,33 @@ border-bottom-right-radius: .3rem;
 
   <main id="main">
 <section id="main">
+    <div class="container">
+    <div class="row">
+    <?php
+    while($row = mysqli_fetch_assoc($result)) 
+    {
+    
+     
+    ?>
+        
+ 
+                <div class="card">
+                    <h1><center> Nofitication </center> </h1>
+                    <div class="form-group mt-4">
 
-<div class="container">
-	<form method="POST">
-    <div class="card" style="width:550px; margin-left:250px;">
-    <h2><center>Change Password</center></h2><br>
-		<label for="current_password">Current Password:</label>
-		<input type="password" name="old_password" placeholder="enter your old password *" required><br>
-		<label for="new_password">New Password:</label>
-		<input type="password" name="new_password" placeholder="enter your new password *"required><br>
-		<button class="btn btn-primary" name="submit" value="submit" type="submit" > submit </button>
+    <?php echo  "<div class='notification'>" . $row["notification"] . "</div>";?>
+                    
+                    </div>
+                </div>
+        
+    
 
-	</form>
+
+    </div>
 </div>
-</section>
+<?php } ?>
+
+</section> 
     <!-- ======= About Section ======= -->
     <!-- End About Section -->
 
@@ -250,7 +256,7 @@ border-bottom-right-radius: .3rem;
     <!-- End Portfolio Section -->
 
     <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
+    <!-- End Testimonials Section -->
 
     <!-- ======= Pricing Section ======= -->
     <!-- End Pricing Section -->
@@ -307,3 +313,4 @@ border-bottom-right-radius: .3rem;
 </body>
 
 </html>
+<?php } ?> 

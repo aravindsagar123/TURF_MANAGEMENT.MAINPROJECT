@@ -589,66 +589,66 @@ if(isset($_POST['submit']))
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-//     function valid()
-//     {
-//         var customer_name=document.getElementById("name").value;
-//         var dob=document.getElementById("dob").value;
-//         var username=document.getElementById("username").value;
-//         var password=document.getElementById("password").value;
-//         var confirmpassword=document.getElementById("confirmpassword").value;
-//         var email=document.getElementById("email").value;
-//         var address=document.getElementById("address").value;
-//         var contact=document.getElementById("contact").value;
+    function valid()
+    {
+        // var customer_name=document.getElementById("name").value;
+        var dob=document.getElementById("dob").value;
+        var username=document.getElementById("username").value;
+        var password=document.getElementById("password").value;
+        var confirmpassword=document.getElementById("confirmpassword").value;
+        var email=document.getElementById("email").value;
+        var address=document.getElementById("address").value;
+        var contact=document.getElementById("contact").value;
     
-//         if ( name=="")
-//         {
-//             document.getElementById("sp1").innerHTML="enter your full name ";
-//             return false;
-//         }
-//        if ( dob=="")
-//        {
-//         document.getElementById("sp2").innerHTML="enter your date of birth";
-//          return false; 
-//     }
-//        if ( username=="")
-//        {
-//         document.getElementById("sp3").innerHTML="enter your username";
-//         return false;
-//        }
-//        if ( password=="")
-//        {
-//         document.getElementById("sp4").innerHTML="enter your password";
-//         return false;;
-//        }
-//        if ( confirmpassword=="")
-//        {
-//         documnet.getElementById("sp5").innerHTML="confirm your password";
-//         return false;
-//        }
-//        if ( email=="")
-//        {
-// document.getElementById("sp6").innerHTML="enter your email id ";
-// return false;
-//        }
-//        if ( address=="")
-//        {
-//         document.getElementById("sp7").innerHTML="enter your address";
-//         return false;
-//        }
-//        if ( contact=="")
-//        {
-//         document.getElementById("sp8").innerHTML="enter your contact number ";
-//         return false;
-//        }
-//        return true;
+        // if ( name=="")
+        // {
+        //     document.getElementById("sp1").innerHTML="enter your full name ";
+        //     return false;
+        // }
+       if ( dob=="")
+       {
+        document.getElementById("sp2").innerHTML="enter your date of birth";
+         return false; 
+        }
+       if ( username=="")
+       {
+        document.getElementById("sp3").innerHTML="enter your username";
+        return false;
+       }
+       if ( password=="")
+       {
+        document.getElementById("sp4").innerHTML="enter your password";
+        return false;;
+       }
+       if ( confirmpassword=="")
+       {
+        document.getElementById("sp5").innerHTML="confirm your password";
+        return false;
+       }
+       if ( email=="")
+       {
+         document.getElementById("sp6").innerHTML="enter your email id ";
+          return false;
+       }
+       if ( address=="")
+       {
+        document.getElementById("sp7").innerHTML="enter your address";
+        return false;
+       }
+       if ( contact=="")
+       {
+        document.getElementById("sp8").innerHTML="enter your contact number ";
+        return false;
+       }
+       return true;
        
-//     }
-//       function clearmsg(sp)
-//       {
-//         document.getElementById(sp).innerHTML="";
-//       }
-//       </script>
+    }
+      function clearmsg(sp)
+      {
+        document.getElementById(sp).innerHTML="";
+      }
+      </script>
 
-// </body>
+</body>
 
-// </html>
+</html>

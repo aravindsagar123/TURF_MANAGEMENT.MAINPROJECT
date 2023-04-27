@@ -1,36 +1,18 @@
 <?php
 session_start();
-include "connection.php";
-    $id1 = $_SESSION['id'];
-    $data = mysqli_query($con,"SELECT * FROM `login` WHERE login_id='$id1'");
-    $row = mysqli_fetch_assoc($data);
-    if(isset($_POST['submit']))
-     {
-        $password = $_POST['old_password'];
-        $new_password = $_POST['new_password'];
-        $hash = password_hash($new_password, PASSWORD_DEFAULT);
-        if(password_verify($password,$row['password']) )
-        {
-            $sql = mysqli_query($con, "UPDATE login SET password = '$hash' WHERE login_id='$id1'");
-            if ($sql)
-             {
-                echo"<script>alert('Password updated successfully!')</script>";
-            }
-             else
-             {
-                echo"Error updating password:";
-            }
-        } 
-        else 
-        {
-            echo "Old password does not match. Please try again.";
-        }
-    }
-
-$con->close();
+include 'connection.php';
+if(isset($_POST['submit']))
+{
+    $message=$_POST['message'];
+    $date=$_POST['date'];
+    $id=$_SESSION['id'];
+    mysqli_query($con," INSERT INTO `feedback`(`message`, `customer_id`, `date`) VALUES ('$message','$id','$date')");
+    echo"<script>alert('feedback submitted')</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <style>
     sp1{
@@ -108,6 +90,16 @@ border-bottom-right-radius: .3rem;
     backgroung-color:orange;
     transtion:0.5s;
 }
+.nova{
+    text-align:center;
+}
+.novi{
+    padding-left:179px;
+}
+h3{
+    padding-top:10px;
+    padding-left:30px;
+}
     </style>
 
   <meta charset="utf-8">
@@ -161,13 +153,11 @@ border-bottom-right-radius: .3rem;
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto " href="adminhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customertable.php"> customer </a></li>
-          <li><a class="nav-link scrollto" href="ownertable.php"> owner </a></li>
-          <li><a class="nav-link scrollto" href="feedbacktable.php"> feedback </a></li>
-          <li><a class="nav-link scrollto" href="viewturf_admin.php"> Turf </a></li>
-          <li><a class="nav-link scrollto  " href="send_notification.php"> send notification </a></li>
-          <li><a class="nav-link scrollto active" href="change_password.php"> change password </a></li>
-        <li><a class="top" href="logout.php">logout</a> <li>
+          <li><a class="nav-link scrollto " href="customer_profile.php">view profile</a></li>
+          <li><a class="nav-link scrollto" href="booking_customer.php"> view turf </a></li>
+          <li><a class="nav-link scrollto-active" href="notificationcustomer.php">view notification </a></li>
+          <li><a class="nav-link scrollto active" href="feedback.php"> feedback </a></li>
+        <li><a class="top" href="login.php">logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -182,8 +172,8 @@ border-bottom-right-radius: .3rem;
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown"> Change Your Password </span></h2>
-          <p class="animate__animated fanimate__adeInUp">" scroll down to select different password "</p>
+          <h2 class="animate__animated animate__fadeInDown"> write some feed back </span></h2>
+          <p class="animate__animated fanimate__adeInUp">" let use know what you think "</p>
           <a href="#main" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
@@ -222,19 +212,33 @@ border-bottom-right-radius: .3rem;
 
   <main id="main">
 <section id="main">
+        <div class="conatinor">
+            <form method="post">
 
-<div class="container">
-	<form method="POST">
-    <div class="card" style="width:550px; margin-left:250px;">
-    <h2><center>Change Password</center></h2><br>
-		<label for="current_password">Current Password:</label>
-		<input type="password" name="old_password" placeholder="enter your old password *" required><br>
-		<label for="new_password">New Password:</label>
-		<input type="password" name="new_password" placeholder="enter your new password *"required><br>
-		<button class="btn btn-primary" name="submit" value="submit" type="submit" > submit </button>
-
-	</form>
+<div class="card" style="padding-right:100px; width:700px; margin-left:300px;">
+    <h3><center>FEEDBACK</CENTER></H3>
+    <div class="form group mt-4">
+        <div class="novi">
+       <label> message : </label>
+       <textarea type="text" name="message" placeholder="enter your message " value="message"></textarea> 
+       
+     
 </div>
+    </div>
+    <div class="form group mt-4">
+        <div class="nova">
+        <label> date :</label>
+        <input type="date" name="date" value="date"  required >
+</div>
+    </div>
+    <div class="form group mt-4">
+        <div class="nova">
+            <input class="btn btn-primary" type="submit" name="submit" value="submit" >
+
+
+</div>
+</form>
+    </div>
 </section>
     <!-- ======= About Section ======= -->
     <!-- End About Section -->

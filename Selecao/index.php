@@ -118,10 +118,10 @@
         <use xlink:href="#wave-path" x="50" y="3" fill="lightgreen">
       </g>
       <g class="wave2">
-        <use xlink:href="#wave-path" x="50" y="0" fill="green">
+        <use xlink:href="#wave-path" x="50" y="0" fill="violet">
       </g>
       <g class="wave3">
-        <use xlink:href="#wave-path" x="50" y="9" fill="rose">
+        <use xlink:href="#wave-path" x="50" y="9" fill="yellow">
       </g>
     </svg>
 

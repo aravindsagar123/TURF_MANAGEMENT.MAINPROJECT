@@ -132,10 +132,10 @@ border-bottom-right-radius: .3rem;
         <ul>
           <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
           <li><a class="nav-link scrollto " href="customer_profile.php"> view profile </a></li>
-          <li><a class="nav-link scrollto" href=""> turf </a></li>
-         
-          <li><a class="nav-link scrollto" href=""> change password </a></li>
-        <li><a class="top" href="login.php">logout</a> <li>
+          <li><a class="nav-link scrollto" href="booking_customer.php">view turf </a></li>
+          <li><a class="nav-link scrollto" href="feedback.php"> feedback </a></li>
+          <li><a class="nav-link scrollto" href="notificationcustomer.php"> view notification </a></li>
+        <li><a class="top" href="logout.php">logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

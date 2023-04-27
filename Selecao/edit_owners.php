@@ -12,7 +12,6 @@ if(isset($_POST['submit']))
  $contact = $_POST['contact'];
  $dob = $_POST['dob'];
  $pic =$_FILES['f1']['name'];
-
       if($pic!="")
     {
       $filearray=pathinfo($_FILES['f1']['name']);

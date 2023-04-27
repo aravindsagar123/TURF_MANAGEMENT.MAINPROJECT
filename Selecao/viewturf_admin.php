@@ -1,36 +1,10 @@
 <?php
-session_start();
-include "connection.php";
-    $id1 = $_SESSION['id'];
-    $data = mysqli_query($con,"SELECT * FROM `login` WHERE login_id='$id1'");
-    $row = mysqli_fetch_assoc($data);
-    if(isset($_POST['submit']))
-     {
-        $password = $_POST['old_password'];
-        $new_password = $_POST['new_password'];
-        $hash = password_hash($new_password, PASSWORD_DEFAULT);
-        if(password_verify($password,$row['password']) )
-        {
-            $sql = mysqli_query($con, "UPDATE login SET password = '$hash' WHERE login_id='$id1'");
-            if ($sql)
-             {
-                echo"<script>alert('Password updated successfully!')</script>";
-            }
-             else
-             {
-                echo"Error updating password:";
-            }
-        } 
-        else 
-        {
-            echo "Old password does not match. Please try again.";
-        }
-    }
-
-$con->close();
+include 'connection.php';
+$data=mysqli_query($con,"SELECT * FROM  `turf`");
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <style>
     sp1{
@@ -108,6 +82,10 @@ border-bottom-right-radius: .3rem;
     backgroung-color:orange;
     transtion:0.5s;
 }
+th,td,tr{
+  text-align:center;
+  padding-top:20px;
+}
     </style>
 
   <meta charset="utf-8">
@@ -160,14 +138,14 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="adminhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customertable.php"> customer </a></li>
-          <li><a class="nav-link scrollto" href="ownertable.php"> owner </a></li>
-          <li><a class="nav-link scrollto" href="feedbacktable.php"> feedback </a></li>
-          <li><a class="nav-link scrollto" href="viewturf_admin.php"> Turf </a></li>
-          <li><a class="nav-link scrollto  " href="send_notification.php"> send notification </a></li>
-          <li><a class="nav-link scrollto active" href="change_password.php"> change password </a></li>
-        <li><a class="top" href="logout.php">logout</a> <li>
+          <li><a class="nav-link scrollto" href="adminhome.php"> Home </a></li>
+          <li><a class="nav-link scrollto " href="customertable.php"> Customer </a></li>
+          <li><a class="nav-link scrollto" href="ownertable.php"> Owner </a></li>
+          <li><a class="nav-link scrollto" href="feedbackadmin.php"> Feedback </a></li>
+          <li><a class="nav-link scrollto active " href="viewturf_admin.php"> Turf </a></li>
+          <li><a class="nav-link scrollto" href="send_notification.php">Send notification </a></li>
+          <li><a class="nav-link scrollto" href="change_password.php"> Change password </a></li>
+        <li><a class="top" href="logout.php">Logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -182,9 +160,9 @@ border-bottom-right-radius: .3rem;
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown"> Change Your Password </span></h2>
-          <p class="animate__animated fanimate__adeInUp">" scroll down to select different password "</p>
-          <a href="#main" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
+          <h2 class="animate__animated animate__fadeInDown"> view turf models  </span></h2>
+          <p class="animate__animated fanimate__adeInUp">" scroll down to select and get status of different turfs in the current page . "</p>
+          <a href="#turf" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
 
@@ -221,19 +199,32 @@ border-bottom-right-radius: .3rem;
   </section><!-- End Hero -->
 
   <main id="main">
-<section id="main">
 
-<div class="container">
-	<form method="POST">
-    <div class="card" style="width:550px; margin-left:250px;">
-    <h2><center>Change Password</center></h2><br>
-		<label for="current_password">Current Password:</label>
-		<input type="password" name="old_password" placeholder="enter your old password *" required><br>
-		<label for="new_password">New Password:</label>
-		<input type="password" name="new_password" placeholder="enter your new password *"required><br>
-		<button class="btn btn-primary" name="submit" value="submit" type="submit" > submit </button>
-
-	</form>
+<section id="turf">
+<div class="one">
+    <center><table class="table table-bordered" style="width:95%;">
+        <tr>
+            <th> turf name  </th>
+            <th> turf place  </th>
+            <th> price  </th>
+           
+            <th> image </th>
+            
+<?php
+while($row= mysqli_fetch_assoc($data))
+{
+    ?> 
+    <tr>
+        <td><?php echo $row['turf_name'];?></td>
+        <td><?php echo $row['turf_place'];?></td>
+        <td><?php echo $row['amount'];?></td>
+        
+      
+        <td><img src="./images/<?php echo $row['image'];?>"height="100px" width="100px" alt="image not found"></td>
+</tr>
+     <?php
+}
+?>
 </div>
 </section>
     <!-- ======= About Section ======= -->
@@ -250,7 +241,7 @@ border-bottom-right-radius: .3rem;
     <!-- End Portfolio Section -->
 
     <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
+    <!-- End Testimonials Section -->
 
     <!-- ======= Pricing Section ======= -->
     <!-- End Pricing Section -->
@@ -267,29 +258,7 @@ border-bottom-right-radius: .3rem;
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <h3> var<sp1>wer</sp1><sp2>dlen</sp2></h3>
-      <p> we provide the best of the best in this city </p>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-      <div class="copyright">
-        &copy; Copyright <strong><sp15>verwendiln</sp15></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/selecao-bootstrap-template/ -->
-          Designed by <a href="https://bootstrapmade.com/"> BootstrapMade </a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
+  
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

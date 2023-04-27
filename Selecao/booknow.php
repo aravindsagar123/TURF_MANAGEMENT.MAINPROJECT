@@ -1,13 +1,46 @@
 <?php
 session_start();
 include 'connection.php';
-$id1=$_GET['id'];
-$data=mysqli_query($con,"SELECT * FROM `owner_registration` WHERE owner_id='$id1'");
-$row=mysqli_fetch_assoc($data);
+if(!isset($_SESSION['id']))
+{
+  header('location:login.php');
+}
+else
+{
+  $id1 = $_GET['id'];
+  $result = mysqli_query($con, "SELECT turf_id, turf_name, turf_place, image, amount FROM `turf` where turf_id='$id1'");
+  if(isset($_POST['submit']))
+  {
+    $fromdate = $_POST['fromdate'];
+    $todate = $_POST['todate'];
+    $id = $_SESSION['id'];
+    $sql1 = mysqli_query($con, "SELECT * FROM `booking` WHERE turf_id='$id1' AND from_date <='$todate' AND to_date >='$fromdate'");
+    if (mysqli_num_rows($sql1) > 0)
+    {
+      echo "<script>alert('Sorry, this date is already booked.')</script>";
+    } 
+    else
+    {
+      $sql = mysqli_query($con,"INSERT INTO `booking`(`from_date`, `to_date`,`turf_id`,`customer_id` ) VALUES ('$fromdate','$todate','$id1','$id')");
+      $BOOK=mysqli_insert_id($con);
+      $_SESSION['booking_id']=$BOOK;
+      if (($sql) === TRUE)
+      {
+        echo'<script>alert("Booking successful.")</script>';
+        header('location:payment.php');
+          
+      } 
+      else
+      {
+        echo "Error: " . $sql . "<br>" . $con->error;
+      }
+    }
+  }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <style>
     sp1{
@@ -20,14 +53,15 @@ $row=mysqli_fetch_assoc($data);
     sp15{
         color:black;
     }
-    .gradient-custom-2 {
-/* fallback for old browsers */
+    .gradient-custom-2 
+    {
+
 background:green;
 
-/* Chrome 10-25, Safari 5.1-6 */
+
 background: -webkit-linear-gradient(to right, green, green);
 
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
 
@@ -84,6 +118,8 @@ border-bottom-right-radius: .3rem;
 .top:hover{
     backgroung-color:orange;
     transtion:0.5s;
+} .nova{
+  padding-left:35px;
 }
     </style>
 
@@ -137,12 +173,8 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#"> Home </a></li>
-          <li><a class="nav-link scrollto " href=""> customer </a></li>
-          <li><a class="nav-link scrollto" href=""> owner </a></li>
-          <li><a class="nav-link scrollto" href=""> feedback </a></li>
-          <li><a class="nav-link scrollto" href="#"> turf </a></li>
-          <li><a class="nav-link scrollto" href=""> change password </a></li>
+          <li><a class="nav-link scrollto active" href="userhome.php"> Home </a></li>
+          
         <li><a class="top" href="login.php">logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -158,9 +190,9 @@ border-bottom-right-radius: .3rem;
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown"> welcome to admin dashboard </span></h2>
-          <p class="animate__animated fanimate__adeInUp">" scroll down to select and get status of different turfs in the current page . "</p>
-          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
+          <h2 class="animate__animated animate__fadeInDown">  select your date and time </span></h2>
+          <p class="animate__animated fanimate__adeInUp">" scroll down to select date and time  "</p>
+          <a href="#main" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
 
@@ -193,22 +225,60 @@ border-bottom-right-radius: .3rem;
         <use xlink:href="#wave-path" x="50" y="9" fill="violet">
       </g>
     </svg>
-
   </section><!-- End Hero -->
-
   <main id="main">
-<section>
+<section id="main">
       <div class="container">
-        <form methord="POST">
-          <div class="card">
+        <form method="POST" >
+          <div class="card" style="width:500px; padding-left:100px; margin-left:200px;">
+            <?php
+          while ($row = mysqli_fetch_assoc($result))
+       {
+      ?>
+      <div class="form-group mt-4">
+        <div class="nova">
+      <?php echo'<img src="./images/' . $row["image"] . '" alt="customer image" height="200px" width="200px" class="center" >';?>
+      <div>
+       </div>
+       <div class="form-group mt-4">
+       <div class="nova">
+       <?php echo"Turf id: " . $row["turf_id"] . "<br>";?>
+       </div>
+       </div>
+       <div class="form-group mt-4">
+       <div class="nova">
+       <?php echo "Turf name : " . $row["turf_name"] . "<br>";?>
+       </div>
+      </div>
+      <div class="form-group mt-4">
+        <div class="nova">
+      <?php echo " Amount : " . $row["amount"] . "<br>";?>  
+       </div> 
+    </div>
+  
          <div class="form-group mt-4">
-          <input type="text" name="turfname" value="<?php echo $row['owner_name']; ?>"
-
-
+          <div class="nova">
+          <label> from date :</label>
+          <input type="date" name="fromdate" placeholder="fromdate" required>
+       </div>
+          <div>
+          <div class="form-group mt-4">
+          <div class="nova">
+            <label> to date : </label>
+          <input type="date" name="todate" placeholder="todate" required>
+       </div>
+          <div>
+          <div class="form-group mt-4">
+          <div class="nova">
+          <input type="submit" class="btn btn-primary" name="submit" value="submit">
+       </div>
         </div>
         </div>
         </form>
       </div>
+      <?php
+       }
+      ?>
 </section>
     <!-- ======= About Section ======= -->
     <!-- End About Section -->

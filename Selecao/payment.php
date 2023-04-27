@@ -1,3 +1,16 @@
+ <?php
+ session_start();
+include 'connection.php';
+if(!isset($_SESSION['id']))
+{
+    header('location:login.php');
+} 
+else
+{
+  $id1=$_SESSION['id'];
+  $sql=mysqli_query($con,"SELECT turf.amount, booking.booking_id, booking.customer_id FROM turf INNER JOIN booking ON turf.turf_id = booking.turf_id WHERE customer_id='$id1' order by booking_id desc");
+  $row=mysqli_fetch_assoc($sql);  
+?> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,14 +26,14 @@
     sp15{
         color:black;
     }
-    .gradient-custom-2 {
-/* fallback for old browsers */
+    .gradient-custom-2 
+    {
+
 background:green;
 
-/* Chrome 10-25, Safari 5.1-6 */
+
 background: -webkit-linear-gradient(to right, green, green);
 
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
 
@@ -46,18 +59,21 @@ border-bottom-right-radius: .3rem;
     color:white;
     transition:0.2s;
 }
-.button2{
+.button2
+{
     padding:15px;
     border-radius:25px;
     color:black;
     background-color:white;
 }
-.button2:hover{
+.button2:hover
+{
     background-color:green;
     color:white;
     transition:0.4s;
 }
-.nova{
+.nova
+{
     padding-left:75px;
     
 }
@@ -74,10 +90,25 @@ border-bottom-right-radius: .3rem;
     color:white;
     padding-left:5px;
 }
-.top:hover{
+.top:hover
+{
     backgroung-color:orange;
     transtion:0.5s;
 }
+.nova{
+    text-align:center;
+    padding-bottom:10px;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .card {
+    flex: 1;
+    margin-right: 1rem;
+  }
     </style>
 
   <meta charset="utf-8">
@@ -128,15 +159,10 @@ border-bottom-right-radius: .3rem;
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <nav id="navbar" class="navbar"> 
+      <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customertable.php"> customer </a></li>
-          <li><a class="nav-link scrollto" href="ownertable.php"> owner </a></li>
-          <li><a class="nav-link scrollto" href="feedbacktable.php"> feedback </a></li>
-          <li><a class="nav-link scrollto" href="#contact"> turf </a></li>
-          <li><a class="nav-link scrollto" href="change_password.php"> change password </a></li>
-        <li><a class="top" href="login.php">logout</a> <li>
+          <li><a class="nav-link scrollto active" href="userhome.php"> Home </a></li>
+        <li><a class="top" href="logout.php">Logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -151,8 +177,8 @@ border-bottom-right-radius: .3rem;
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown"> welcome to admin dashboard </span></h2>
-          <p class="animate__animated fanimate__adeInUp">" scroll down to select and get status of different turfs in the current page . "</p>
+          <h2 class="animate__animated animate__fadeInDown"> payment gateway </span></h2>
+          <p class="animate__animated fanimate__adeInUp">" scroll down to make payment . "</p>
           <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
@@ -190,9 +216,24 @@ border-bottom-right-radius: .3rem;
   </section><!-- End Hero -->
 
   <main id="main">
-<section>
-        
+  <section id="main">
+  <div class="container">
+    <div class="row">
+      <div class="card" style="width:50% margin-left:150px;">
+        <form method="POST">
+          <input type="text" name="amount" value="<?php echo $row["amount"];?>">
+          <p> status :</p>
+          <input type="radio" id="html" name="status" value="paid ">
+          <label for="html"> paid </label><br>
+          <input type="radio" id="css" name="status" value="unpaid">
+          <label for="css"> un paid </label><br>
+          <input class="btn btn-primary" type="submit" name="submit">
+        </form>
+      </div>
+    </div>
+  </div>
 </section>
+
     <!-- ======= About Section ======= -->
     <!-- End About Section -->
 
@@ -264,3 +305,21 @@ border-bottom-right-radius: .3rem;
 </body>
 
 </html>
+<?php
+if(isset($_POST['submit']))
+  {
+     $status=$_POST['status'];
+     $amount=$_POST['amount'];
+     $booking_id=$_SESSION['booking_id'];
+    mysqli_query($con,"INSERT INTO `payment`(`customer_id`, `booking_id`, `amount`, `status`) VALUES ('$id1','$booking_id','$amount','$status')");
+    $pay=mysqli_insert_id($con);
+     $result=mysqli_query($con,"UPDATE `booking` SET `payment_id`='$pay' WHERE customer_id='$id1' AND booking_id='$booking_id'");
+     if($result)
+     {
+        echo'<script>alert(" booking successfull")</script>';
+        header('location:booking_customer.php');
+
+  }  
+  }
+  ?>
+<?php } ?>

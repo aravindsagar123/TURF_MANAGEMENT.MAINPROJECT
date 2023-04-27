@@ -176,7 +176,7 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
+          <li><a class="nav-link scrollto active" href="userhome.php"> Home </a></li>
           <li><a class="nav-link scrollto " href=""> customer </a></li>
           <li><a class="nav-link scrollto" href=""> owner </a></li>
           <li><a class="nav-link scrollto" href=""> feedback </a></li>
