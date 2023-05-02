@@ -2,7 +2,7 @@
 include 'connection.php';
 if(isset($_POST['submit']))
 {
-    $customer_name=$_POST['name'];
+    $customer_name=$_POST['fullname'];
     $dob=$_POST['dob'];
     $email=$_POST['email'];
     $address=$_POST['address'];
@@ -30,6 +30,7 @@ if(isset($_POST['submit']))
    if($sql)
    {
     echo'<script>alert("registered successfully");</script>';
+    header('location:customer_registration.php');
     ?>
     <script>window.location.assgin('customer_registration.php');</script>
     <?php
@@ -150,22 +151,70 @@ if(isset($_POST['submit']))
     margin-bottom: -15%;
     color: #495057;
 }
-.regi
-{
-    padding-left:12cm;
-    padding:10px 15px 10px 15px ;
-    left:50%;
-    border-radius:15px;
-    background-color:blue;
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/832/864/959/the-ball-sport-football-russia-wallpaper-preview.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  background-size: 250vh;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+  }
+  label {
+    margin-bottom: 5px;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  button {
+    background-color: #343A40;
+  border-radius: 4px;  
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 16px;
+  }
+
+  button:hover {
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
+  animation:slidebg 2s linear infinite;
+  transform: 0.3s;
+  }
+  h1{
+    color: red;
+  }
+  label{
     color:white;
-}
-.regi:hover
-{
-    background-color:green;
-    color:white;
-    transition:0.3s;
-}
-    </style>
+  }
+  #about{
+    background-image: url("https://c0.wallpaperflare.com/preview/800/413/301/artificial-background-color-cover.jpg");
+    padding-top:1px;
+  }
+   </style>
 
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -217,9 +266,9 @@ if(isset($_POST['submit']))
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
           
-          <li><a class="nav-link scrollto" href="#about">Login</a></li>
+          <li><a class="nav-link scrollto" href="login.php">Login</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           
           <li><a class="nav-link scrollto" href="#contact"> Contact</a></li>
@@ -278,131 +327,53 @@ if(isset($_POST['submit']))
   <main id="main">
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-      <form  method="POST" enctype="multipart/form-data" required>
-      <div class="container register">
-                <div class="row">
-                    <div class="col-md-3 register-left">
-                        <img src="https://sportscafe.in/img/es3-cfit-s100/scweb/modules/static/aboutus/our-story/story/Reports.png" alt=""/>
-                        <h3>Welcome</h3>
-                        <p>You are 30 seconds away registration </p>
-                        <input type="submit" name="" value="Login"/><br/>
-                    </div>
-                    <div class="col-md-9 register-right">
-                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">customer</a>
-                            </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"></a>
-                            </li> -->
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 class="register-heading">register as a customer </h3>
-                                
-                                <div class="row register-form">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Full Name *"  onkeyup="clearmsg('sp1')" value="" required ><br><span style="color:red;" id="sp1"></span><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of birth *"  onkeyup="clearmsg('sp2')" value=""><br><span style="color:red;" id="sp2"></span><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="username" name="username" placeholder="username *" onkeyup="clearmsg('sp3')" value="" ><br><span style="color:red;" id="sp3"></span><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password *" onkeyup="clearmsg('sp4')" value=""><br><span style="color:red;" id="sp4"></span><br>
-                                        </div>
-                                        
-                                        <!-- <div class="form-group">
-                                            <div class="maxl">
-                                                <label class="radio inline"> 
-                                                    <input type="radio" name="gender" value="male" checked>
-                                                    <span> Male </span> 
-                                                </label>
-                                                <label class="radio inline"> 
-                                                    <input type="radio" name="gender" value="female">
-                                                    <span>Female </span> 
-                                                </label>
-                                            </div>
-                                        </div> -->
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control"id="email" name="email" placeholder="Your Email *" onkeyup="clearmsg('sp5')" value="" ><br><span style="color:red;" id="sp5"></span><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" minlength="10" maxlength="10"  class="form-control" id="contact" name="contact" placeholder="Your Phone *" onkeyup="clearmsg('sp6')" value="" ><br><span style="color:red;" id="sp6"></span><br>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" name="confirmpassword" id="confirmpassword" placeholder="confirm password *" onkeyup="clearmsg('sp7')" value="" ><br><span style="color:red;" id="sp7"></span><br>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <input type="file" class="form-control" name="f1" id="" placeholder=" *" onkeyup="clearmsg('sp9')" value="" ><br><span style="color:red;" id="sp9"></span><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea type="text" class="form-control" name="address" id="address" placeholder="address*" onkeyup="clearmsg('sp8')" value="" ></textarea><br><span style="color:red;" id="sp8"></span><br>
-                                        </div>
-                                        <br>                     
-                                        <button type="submit" class="regi"  onclick="return valid(); return false;"  name="submit"> Register </button>
-                                    
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <h3  class="register-heading">Apply as a Hirer</h3>
-                                <div class="row register-form">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="First Name *" value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Last Name *" value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email *" value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
-                                        </div>
-
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password *" value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
-                                                <option>What is your Birthdate?</option>
-                                                <option>What is Your old Phone Number</option>
-                                                <option>What is your Pet Name?</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="`Answer *" value="" />
-                                        </div>
-                                        <input type="submit" class="btnRegister"  value="Register"/>
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+    <section id="about" class="about" >
+    <div class="container">
+    <Form method="POST" enctype="multipart/form-data"  required >
+      <div class="card">
+        <h1> CUSTOMER  REGISTRATION</h1>
+        <div class="form-group">
+          <label for="fullname"> FULL NAME:</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" onkeyup="clearmsg('sp1')" value="" ><br><span style="color:red;" id="sp1"></span>
+        </div>
+        <div class="form-group">
+          <label for="username"> USERNAME:</label>
+          <input type="text" id="username" name="username" placeholder="Enter your user name" onkeyup="clearmsg('sp2')" value="" ><br><span style="color:red;" id="sp2"></span> 
+        </div>
+        <div class="form-group">
+          <label for="email"> EMAIL:</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" onkeyup="clearmsg('sp3')" value="" ><br><span style="color:red;" id="sp3"></span>
+        </div>
+        <div class="form-group">
+          <label for="contact"> CONTACT NUMBER:</label>
+          <input type="tel" id="contact" name="contact" placeholder="Enter your contact number" onkeyup="clearmsg('sp4')" value="" ><br><span style="color:red;" id="sp4"></span>
+        </div>
+        <div class="form-group">
+          <label for="password "> PASSWORD:</label>
+          <input type="pasword " id="password" name="password" placeholder=" Enter your password *" onkeyup="clearmsg('sp5')" value="" ><br><span style="color:red;" id="sp5"></span> 
+        </div>
+        <div class="form-group">
+          <label for="dob"> DATE OF BIRTH:</label>
+          <input type="date" id="dob" name="dob"  onkeyup="clearmsg('sp6')" value="" required ><br><span style="color:red;" id="sp6"></span>
+        </div>
+        <div class="form-group">
+          <label for="address"> ADDRESS:</label>
+          <textarea id="address" name="address" placeholder="Enter your address" onkeyup="clearmsg('sp7')" value=""></textarea><span style="color:red;" id="sp7"></span>
+        </div>
+        
+        <div class="form-group">
+          <label for="image"> IMAGE:</label>
+          <input type="file" class="image" id="f1" name="f1" onkeyup="clearmsg('sp8')" value="" ><br><span style="color:red;" id="sp8"></span>
+        </div>
+        <div class="button-group" style="margin-bottom:10px;">
+        <button type="submit" name="submit" value="submit" onclick="return validateForm()" >Submit</button>
       </div>
-</form>
+    </div>
+      
+      
+      </div>
+</Form>
+  </div>
     </section><!-- End Cta Section -->
 
     <!-- ======= Services Section ======= -->
@@ -589,65 +560,66 @@ if(isset($_POST['submit']))
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-    function valid()
-    {
-        // var customer_name=document.getElementById("name").value;
-        var dob=document.getElementById("dob").value;
-        var username=document.getElementById("username").value;
-        var password=document.getElementById("password").value;
-        var confirmpassword=document.getElementById("confirmpassword").value;
-        var email=document.getElementById("email").value;
-        var address=document.getElementById("address").value;
-        var contact=document.getElementById("contact").value;
-    
-        // if ( name=="")
-        // {
-        //     document.getElementById("sp1").innerHTML="enter your full name ";
-        //     return false;
-        // }
-       if ( dob=="")
-       {
-        document.getElementById("sp2").innerHTML="enter your date of birth";
-         return false; 
-        }
-       if ( username=="")
-       {
-        document.getElementById("sp3").innerHTML="enter your username";
-        return false;
-       }
-       if ( password=="")
-       {
-        document.getElementById("sp4").innerHTML="enter your password";
-        return false;;
-       }
-       if ( confirmpassword=="")
-       {
-        document.getElementById("sp5").innerHTML="confirm your password";
-        return false;
-       }
-       if ( email=="")
-       {
-         document.getElementById("sp6").innerHTML="enter your email id ";
-          return false;
-       }
-       if ( address=="")
-       {
-        document.getElementById("sp7").innerHTML="enter your address";
-        return false;
-       }
-       if ( contact=="")
-       {
-        document.getElementById("sp8").innerHTML="enter your contact number ";
-        return false;
-       }
-       return true;
-       
-    }
-      function clearmsg(sp)
-      {
-        document.getElementById(sp).innerHTML="";
-      }
-      </script>
+function validateForm() 
+{
+  var fullName = document.getElementById("fullname").value;
+  var userName = document.getElementById("username").value;
+  var email = document.getElementById("email").value;
+  var contact = document.getElementById("contact").value;
+  var password = document.getElementById("password").value;
+   var dob = document.getElementById("dob").value;
+  var address = document.getElementById("address").value;
+
+  if (fullName=="")
+  {
+    document.getElementById("sp1").innerHTML = "Enter your full name";
+    return false; 
+  }
+  
+  if (userName=="")
+  {
+    document.getElementById("sp2").innerHTML = "Enter your username";
+    return false; 
+  }
+  
+  if (email=="")
+  {
+    document.getElementById("sp3").innerHTML = "Enter your email id";
+    return false; 
+  }
+  
+  if (contact=="")
+  {
+    document.getElementById("sp4").innerHTML = "Enter your contact no";
+    return false; 
+  }
+  
+  if (password=="")
+  {
+    document.getElementById("sp5").innerHTML = "Enter your password";
+    return false; 
+  }
+  
+  if (dob=="")
+  {
+    document.getElementById("sp6").innerHTML = "Enter your date of birth";
+    return false; 
+  }
+  
+  if (address=="")
+  {
+    document.getElementById("sp7").innerHTML = "Enter your address";
+    return false; 
+  }
+        
+  return true;
+}
+
+function clearmsg(sp)
+{
+  document.getElementById(sp).innerHTML = "";
+}
+</script>
 
 </body>
 

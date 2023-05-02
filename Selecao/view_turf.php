@@ -17,6 +17,7 @@ $data=mysqli_query($con,"SELECT * FROM  `turf`");
     sp15{
         color:black;
     }
+
     .gradient-custom-2 {
 /* fallback for old browsers */
 background:green;
@@ -85,7 +86,45 @@ border-bottom-right-radius: .3rem;
 th,td,tr{
   text-align:center;
   padding-top:20px;
+  background-color:white;
 }
+#styledtable{
+        
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+#styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+#styled-table th,
+#styled-table td {
+    padding: 12px 15px;
+}
+#styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+#styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+#styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+   #styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}    
+#about{
+      background-color:white;
+    }
     </style>
 
   <meta charset="utf-8">
@@ -138,12 +177,13 @@ th,td,tr{
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="ownerhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto " href="ownerprofile.php"> view profile </a></li>
-          <li><a class="nav-link scrollto" href="turf.php"> register turf </a></li>
-          <li><a class="nav-link scrollto active " href="view_turf.php"> viewturf </a></li>
-          <li><a class="nav-link scrollto " href="viewbooking_owner.php"> view booked turf</a></li>
-        <li><a class="top" href="logout.php">logout</a> <li>
+        <li><a class="nav-link scrollto " href="ownerhome.php"> HOME </a></li>
+          <li><a class="nav-link scrollto " href="ownerprofile.php"> VIEW PROFILE  </a></li>
+          <li><a class="nav-link scrollto" href="turf.php"> REGISTER TURF </a></li>
+          <li><a class="nav-link scrollto active" href="view_turf.php"> VIEW TURF</a></li>
+          <li><a class="nav-link scrollto  " href="viewbooking_owner.php"> VIEW BOOKED TURF  </a></li>
+        
+        <li><a class="top" href="logout.php">LOG OUT</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -160,7 +200,7 @@ th,td,tr{
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown"> view turf models  </span></h2>
           <p class="animate__animated fanimate__adeInUp">" scroll down to select and get status of different turfs in the current page . "</p>
-          <a href="#turf" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
 
@@ -198,15 +238,15 @@ th,td,tr{
 
   <main id="main">
 
-<section id="turf">
+<section id="about">
 <div class="one">
-    <center><table class="table table-bordered" style="width:95%;">
-        <tr>
-            <th> turf name  </th>
-            <th> turf place  </th>
-            <th> price  </th>
+    <center><table class="table table-bordered" style="width:95%;" id="styledtable">
+        <tr class="active-row">
+            <th> TURF NAME  </th>
+            <th> TURF PLACE  </th>
+            <th> PRICE </th>
            
-            <th> image </th>
+            <th> IMAGE </th>
             
 <?php
 while($row= mysqli_fetch_assoc($data))

@@ -26,6 +26,7 @@ $pic=$_FILES['f1']['name'];
     }
     mysqli_query($con,"UPDATE customer_registration SET customer_name = '$customer_name', address = '$address', email = '$email', contact = '$contact', dob = '$dob', image ='$filenew' WHERE customer_id = '$id1'");
     echo "<script>alert('upadated successfully')</script>";
+    header('location:edit_customer.php');
   }
 ?>
 </html>
@@ -176,13 +177,12 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="userhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto " href=""> customer </a></li>
-          <li><a class="nav-link scrollto" href=""> owner </a></li>
-          <li><a class="nav-link scrollto" href=""> feedback </a></li>
-          <li><a class="nav-link scrollto" href=""> turf </a></li>
-          <li><a class="nav-link scrollto" href=""> change password </a></li>
-        <li><a class="top" href="login.php">logout</a> <li>
+        <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
+          <li><a class="nav-link scrollto " href="customer_profile.php"> view profile </a></li>
+          <li><a class="nav-link scrollto" href="booking_customer.php">view turf </a></li>
+          <li><a class="nav-link scrollto" href="feedback.php"> feedback </a></li>
+          <li><a class="nav-link scrollto" href="notificationcustomer.php"> view notification </a></li>
+        <li><a class="top" href="logout.php">logout</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -197,9 +197,9 @@ border-bottom-right-radius: .3rem;
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown"> welcome to admin dashboard </span></h2>
-          <p class="animate__animated fanimate__adeInUp">" scroll down to select and get status of different turfs in the current page . "</p>
-          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
+          <h2 class="animate__animated animate__fadeInDown"> EDIT YOUR PROFILE PAGE </span></h2>
+          <p class="animate__animated fanimate__adeInUp">" scroll down to edit your profile  "</p>
+          <a href="#main" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
 
@@ -236,38 +236,38 @@ border-bottom-right-radius: .3rem;
   </section><!-- End Hero -->
 
   <main id="main">
-<section>
+<section id="main">
 <div class="container">
     <div class="card">
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
 
 <h2><CENTER> EDIT PROFILE</CENTER> </H2><BR>
 <div class="form-group mt-4">
 <label for="owner_name">customer Name:</label>
-<input type="text" id="owner_name" name="customer_name" value="<?php echo $row['customer_name']; ?>" style="width:250px"><br>
+<input type="text" id="customer_name" name="customer_name" value="<?php echo $row['customer_name']; ?>" style="width:250px"onkeyup="clearmsg('sp1')"><br><span style="color:red;" id="sp1"></span>
 </div>
 <div class="form-group mt-4">
 <label for="address">Address:</label>
-<input id="address" name="address" value="<?php echo $row['address']; ?>"><br>
+<input id="address" name="address" value="<?php echo $row['address']; ?>" onkeyup="clearmsg('sp2')"><br><span style="color:red;" id="sp2"></span>
 </div>
 <div class="form-group mt-4">
 <label for="email">Email:</label>
-<input type="email" id="email" name="email" value="<?php echo $row['email']; ?>"><br>
+<input type="email" id="email" name="email" value="<?php echo $row['email']; ?>" onkeyup="clearmsg('sp3')"><br><span style="color:red;" id="sp3"></span>
 </div>
 <div class="form-group mt-4">
 <label for="contact">Contact:</label>
-<input type="text" id="contact" name="contact" value="<?php echo $row['contact']; ?>"><br>
+<input type="text" id="contact" name="contact" value="<?php echo $row['contact']; ?>"  onkeyup="clearmsg('sp4')"  ><br><span style="color:red;" id="sp4"></span>
 </div>
 <div class="form-group mt-4">
 <label for="dob">Date of Birth:</label>
-<input type="date" id="dob" name="dob" placeholder="date of birth" value="<?php echo $row['dob']; ?>"><br>
+<input type="date" id="dob" name="dob" placeholder="date of birth" value="<?php echo $row['dob']; ?>"  onkeyup="clearmsg('sp5')" required ><br><span style="color:red;" id="sp5"></span>
 </div>
 <div class=" form-group mt-4">
 <input type="file" name="f1" required >
   
   </div>
 <div class="btn">
-    <button class="button" type="submit" name="submit"> update </button>
+    <button class="button" type="submit" name="submit" onclick="return validateForm()" > update </button>
 </div>
 </div>
 </div>
@@ -339,6 +339,53 @@ border-bottom-right-radius: .3rem;
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+        <script>
+          function validateForm() 
+{
+  var customername = document.getElementById("customer_name").value;
+  var address = document.getElementById("address").value;
+  var email = document.getElementById("email").value;
+  var contact = document.getElementById("contact").value;
+  var dob = document.getElementById("dob").value;
+ 
+
+  if (customername=="")
+  {
+    document.getElementById("sp1").innerHTML = "Enter your full name";
+    return false; 
+  }
+  
+  if (address=="")
+  {
+    document.getElementById("sp2").innerHTML = "Enter your address";
+    return false; 
+  }
+  
+  if (email=="")
+  {
+    document.getElementById("sp3").innerHTML = "Enter your email id";
+    return false; 
+  }
+  
+  if (contact=="")
+  {
+    document.getElementById("sp4").innerHTML = "Enter your contact no";
+    return false; 
+  }
+  
+  if (dob=="")
+  {
+    document.getElementById("sp5").innerHTML = "Enter your date of birth ";
+    return false; 
+  }      
+  return true;
+}
+
+function clearmsg(sp)
+{
+  document.getElementById(sp).innerHTML = "";
+}
+          </script>
 
 </body>
 

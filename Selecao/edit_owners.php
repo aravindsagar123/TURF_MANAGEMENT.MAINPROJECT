@@ -26,6 +26,7 @@ if(isset($_POST['submit']))
     }
     mysqli_query($con,"UPDATE owner_registration SET owner_name = '$owner_name', address = '$address', email = '$email', contact = '$contact', dob = '$dob', image ='$filenew' WHERE owner_id = '$id1'");
     echo " <script>alert('upadated successfully')</script>";
+    header('location:ownerprofile.php');
   }
 ?>
 </html>
@@ -169,13 +170,12 @@ border-bottom-right-radius: .3rem;
       </div>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
-          <li><a class="nav-link scrollto " href=""> customer </a></li>
-          <li><a class="nav-link scrollto" href=""> owner </a></li>
-          <li><a class="nav-link scrollto" href=""> feedback </a></li>
-          <li><a class="nav-link scrollto" href=""> turf </a></li>
-          <li><a class="nav-link scrollto" href=""> change password </a></li>
-        <li><a class="top" href="login.php">logout</a> <li>
+        <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
+          <li><a class="nav-link scrollto " href="ownerprofile.php">view  Profile </a></li>
+          <li><a class="nav-link scrollto" href="turf.php"> Register Turf </a></li>
+          <li><a class="nav-link scrollto" href="view_turf.php"> View Turf </a></li>
+          <li><a class="nav-link scrollto  " href="viewbooking_owner.php">view booked turf </a></li>
+          <li><a class="nav-link scrollto" href="viewbooking_owner.php"> view booking </a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -187,9 +187,9 @@ border-bottom-right-radius: .3rem;
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown"> welcome to admin dashboard </span></h2>
-          <p class="animate__animated fanimate__adeInUp">" scroll down to select and get status of different turfs in the current page . "</p>
-          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
+          <h2 class="animate__animated animate__fadeInDown"> EDIT YOUR PROFILE </span></h2>
+          <p class="animate__animated fanimate__adeInUp">" scroll down to edit the profile page  "</p>
+          <a href="#main" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
       <!-- Slide 2 -->
@@ -217,37 +217,37 @@ border-bottom-right-radius: .3rem;
     </svg>
   </section><!-- End Hero -->
   <main id="main">
-<section>
+<section id="main">
 <div class="container">
     <div class="card">
-<form method="POST" enctype="multipart/form-data" >
+<form method="POST" enctype="multipart/form-data" onsubmit="return validateForm()" required>
 <input type="hidden" name="owner_id" value="<?php echo $owner_id; ?>"><BR>
 <h2><CENTER> EDIT PROFILE</CENTER> </H2><BR>
 <div class="form-group mt-4">
 <label for="owner_name">Owner Name:</label>
-<input type="text" id="owner_name" name="owner_name" value="<?php echo $row['owner_name']; ?>" style="width:250px"><br>
+<input type="text" id="owner_name" name="owner_name" value="<?php echo $row['owner_name']; ?>" style="width:250px" onkeyup="clearmsg('sp1')"><br><span style="color:red;" id="sp1"></span>
 </div>
 <div class="form group mt-4">
 <label for="address">Address:</label>
-<input id="address" name="address" value="<?php echo $row['address']; ?>"><br>
+<input id="address" name="address" value="<?php echo $row['address']; ?>" onkeyup="clearmsg('sp2')"><br><span style="color:red;" id="sp2"></span>
 </div>
 <div class="form group mt-4">
 <label for="email">Email:</label>
-<input type="email" id="email" name="email" value="<?php echo $row['email']; ?>"><br>
+<input type="email" id="email" name="email" value="<?php echo $row['email']; ?>" onkeyup="clearmsg('sp3')"><br><span style="color:red;" id="sp3"></span>
 </div>
 <div class="form group mt-4">
 <label for="contact">Contact:</label>
-<input type="text" id="contact" name="contact" value="<?php echo $row['contact']; ?>"><br>
+<input type="text" id="contact" name="contact" value="<?php echo $row['contact']; ?>" onkeyup="clearmsg('sp4')"><br><span style="color:red;" id="sp4"></span>
 </div>
 <div class="form group mt-4">
 <label for="dob">Date of Birth:</label>
-<input type="date" id="dob" name="dob" placeholder="date of birth" value="<?php echo $row['dob']; ?>"><br>
+<input type="date" id="dob" name="dob" placeholder="date of birth" value="<?php echo $row['dob']; ?>" onkeyup="clearmsg('sp5')"><br><span style="color:red;" id="sp5"></span>
 </div>
 <div class=" form-group mt-4">
 <input type="file" name="f1" required >
   </div>
 <div class="btn">
-    <button class="button" type="submit" name="submit"> update </button>
+    <button class="button" type="submit" name="submit" onclick="return validateForm()" > update </button>
 </div>
 </div>
 </div>
@@ -316,6 +316,55 @@ border-bottom-right-radius: .3rem;
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  
+     <script>
+          function validateForm() 
+{
+  var ownername = document.getElementById("owner_name").value;
+  var address = document.getElementById("address").value;
+  var email = document.getElementById("email").value;
+  var contact = document.getElementById("contact").value;
+  var dob = document.getElementById("dob").value;
+ 
+
+  if (ownername=="")
+  {
+    document.getElementById("sp1").innerHTML = "Enter your full name";
+    return false; 
+  }
+  
+  if (address=="")
+  {
+    document.getElementById("sp2").innerHTML = "Enter your address";
+    return false; 
+  }
+  
+  if (email=="")
+  {
+    document.getElementById("sp3").innerHTML = "Enter your email id";
+    return false; 
+  }
+  
+  if (contact=="")
+  {
+    document.getElementById("sp4").innerHTML = "Enter your contact no";
+    return false; 
+  }
+  
+  if (dob=="")
+  {
+    document.getElementById("sp5").innerHTML = "Enter your date of birth ";
+    return false; 
+  }      
+  return true;
+}
+
+function clearmsg(sp)
+{
+  document.getElementById(sp).innerHTML = "";
+}
+          </script>
+  
 </body>
 
 </html>

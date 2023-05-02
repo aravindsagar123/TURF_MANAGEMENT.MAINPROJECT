@@ -23,7 +23,7 @@ if(isset($_POST['submit']))
     }
     $id1=$_SESSION['id'];
     $sql="INSERT INTO `turf`( `turf_name`, `turf_place`, `image`, `amount`, `owner_id`) VALUES ('$turf_name','$turf_place','$filenew','$amount','$id1')";
-    $amt=mqsqli_insert_id($con);
+  
     
     if (mysqli_query($con, $sql))
      {
@@ -31,7 +31,7 @@ if(isset($_POST['submit']))
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($con);
     }
-    
+    header('location:turf.php');
     mysqli_close($con);
 }
     
@@ -121,6 +121,12 @@ border-bottom-right-radius: .3rem;
 .form-group{
     border-radius: 2cm;
 }
+label{
+
+}
+#about{
+      background-color:white;
+    }
     </style>
 
   <meta charset="utf-8">
@@ -173,13 +179,13 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar"> 
         <ul>
-          <li><a class="nav-link scrollto " href="ownerhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto  " href="ownerprofile.php"> view profile</a></li>
-          <li><a class="nav-link scrollto active" href="turf.php"> register turf</a></li>
-          <li><a class="nav-link scrollto" href="view_turf.php"> view turf</a></li>
-          <li><a class="nav-link scrollto  " href="viewbooking_owner.php"> view booked turf </a></li>
-          
-        <li><a class="top" href="login.php">logout</a> <li>
+        <li><a class="nav-link scrollto" href="ownerhome.php"> HOME </a></li>
+          <li><a class="nav-link scrollto " href="ownerprofile.php"> VIEW PROFILE  </a></li>
+          <li><a class="nav-link scrollto active" href="turf.php"> REGISTER TURF </a></li>
+          <li><a class="nav-link scrollto" href="view_turf.php"> VIEW TURF</a></li>
+          <li><a class="nav-link scrollto  " href="viewbooking_owner.php"> VIEW BOOKED TURF  </a></li>
+        
+        <li><a class="top" href="logout.php">LOG OUT</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -233,22 +239,22 @@ border-bottom-right-radius: .3rem;
   </section><!-- End Hero -->
 
   <main id="main">
-<section id="upload">
+<section id="about">
     <div class="container">
-        <form method="POST" enctype="multipart/form-data" required >
+        <form method="POST" enctype="multipart/form-data"  onsubmit="return validateForm()" required >
             <table class="table table-bordered">
                 <div class="form-group">
                     <div class="form-group">
                         <label for="exampleInputEmail1"> turf name :</label>
-                        <input type="text" name="turf_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your turf name*" width="25px">
+                        <input type="text" id="turf_name" name="turf_name" class="form-control"  aria-describedby="emailHelp" placeholder="Enter your turf name*" width="25px" onkeyup="clearmsg('sp1')"><br><span style="color:red;" id="sp1"></span>
                         <small id="emailHelp"  class="form-text text-muted"></small>
                       </div><br>
                       <div class="form-group">
                         <label for="exampleInputPassword1"> turf place :</label>
-                        <input type="text" name="turf_place" class="form-control" id="exampleInputPassword1" placeholder="enter your turf place *">
+                        <input type="text" id="turf_place"  name="turf_place" class="form-control" placeholder="enter your turf place *" onkeyup="clearmsg('sp2')"><br><span style="color:red;" id="sp2"></span>
                       </div><br>
                       <label for="exampleInputEmail1"> price : </label>
-                      <input type="text" name="price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your price *" width="25px">
+                      <input type="text"id="price"  name="price" class="form-control"  aria-describedby="emailHelp" placeholder="Enter your price *" width="25px" onkeyup="clearmsg('sp3')"><br><span style="color:red;" id="sp3"></span>
                       <small id="emailHelp" class="form-text text-muted"></small>
                     </div><br>
                     
@@ -258,7 +264,7 @@ border-bottom-right-radius: .3rem;
                       </div><br>
 
                       
-                      <button type="submit" class="btn btn-primary" name="submit"> Submit </button><br>
+                      <button type="submit" class="btn btn-primary" name="submit" onclick="return validateForm()"> Submit </button><br>
                                 </div>
             </table>
             
@@ -333,6 +339,38 @@ border-bottom-right-radius: .3rem;
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+          function validateForm() 
+{
+  var turfname = document.getElementById("turf_name").value;
+  var turfplace = document.getElementById("turf_place").value;
+  var price= document.getElementById("price").value;
+  
+  if ( turfname=="")
+  {
+    document.getElementById("sp1").innerHTML = "Enter your turf name ";
+    return false; 
+  }
+  
+  if ( turfplace=="")
+  {
+    document.getElementById("sp2").innerHTML = "Enter your turf place ";
+    return false; 
+  }
+  
+  if ( price=="")
+  {
+    document.getElementById("sp3").innerHTML = "Enter your price ";
+    return false; 
+  }
+  return true;
+}
+
+function clearmsg(sp)
+{
+  document.getElementById(sp).innerHTML = "";
+}
+          </script>
 
 </body>
 

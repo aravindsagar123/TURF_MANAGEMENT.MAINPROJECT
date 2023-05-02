@@ -5,13 +5,11 @@ if(!isset($_SESSION['id']))
 {
   header('location:login.php');
 }
-else{
+else
+{
   $result=mysqli_query($con,"SELECT turf_id, turf_name, turf_place, image, amount FROM `turf`");
-  
 
-  // Display the data in a table
-
-
+}
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +61,8 @@ else{
     -webkit-animation: mover 2s infinite  alternate;
     animation: mover 1s infinite  alternate;
 }
-@-webkit-keyframes mover {
+@-webkit-keyframes mover
+ {
     0% { transform: translateY(0); }
     100% { transform: translateY(-20px); }
 }
@@ -162,18 +161,20 @@ table {
     background-color: #f5f5f5;
     }
 
-    .container
-    {
-      display:flex;
-       justify-content: space-between;
-       flex-direction: row;
-       flex-wrap: wrap;
-    }
+    
+      .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+    
     .card
     {
 
       border:1px solid black;
       justify-content:space-evenly;
+      margin:10px;
 
     }
 
@@ -188,15 +189,17 @@ table {
 .move{
   text-align: center;
 }
-.mov{
-  text-align: center;
-  padding-bottom:25px;
-}
-.btn:hover{
+
+.nova{
   background-color:lightgreen;
+
   color:white;
+  
 }
     
+#about{
+      background-color:white;
+    }
     
     
     </style>
@@ -251,13 +254,12 @@ table {
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="userhome.php">Home</a></li>
-          <li><a class="nav-link scrollto" href="customer_profile.php">view profile </a></li>
-          <li><a class="nav-link scrollto active" href="booking_customer.php">view turf </a></li>
-          <li><a class="nav-link scrollto" href="notificationcustomer.php">view notification </a></li>
-          <li><a class="nav-link scrollto" href="feedback.php">feedback</a></li>
-         
-          <li><a class="nav-link scrollto" href="login.php">Logout</a></li>
+        <li><a class="nav-link scrollto " href="userhome.php"> HOME  </a></li>
+          <li><a class="nav-link scrollto " href="customer_profile.php"> VIEW PROFILE  </a></li>
+          <li><a class="nav-link scrollto active " href="booking_customer.php"> VIEW TURF </a></li>
+          <li><a class="nav-link scrollto" href="feedback.php"> FEED BACK</a></li>
+          <li><a class="nav-link scrollto" href="notificationcustomer.php"> VIEW NOTIFICATION </a></li>
+        <li><a class="top" href="logout.php"> LOGOUT </a> <li>
           
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -275,7 +277,7 @@ table {
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown"> <I> select turfs down below </i></span></h2>
           <p class="animate__animated fanimate__adeInUp">"select from varities of different turfs "</p>
-          <a href="#book" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
 
@@ -312,82 +314,38 @@ table {
   </section><!-- End Hero -->
 
   <main id="main">
-    <section id="book">
-      
-    
-	
+    <section id="about">
     <?php
 			while ($row = mysqli_fetch_assoc($result))
        {
         ?>
         <div class="container">
-          
-         <div class="card" style="width:50%; margin-left:200px; justify-content: space-evenly;">
-    <div class="form-group mt-4">
-    <?php echo'<img src="./images/' . $row["image"] . '" alt="customer image" height="200px" width="200px" class="center" >';?>
-     </div>
-				<div class="form-group mt-4">
-          <div class="move">
-       <?php echo"Turf id: " . $row["turf_id"] . "<br>";?>
-       </div>
-     </div>
-          
-     <div class="form-group mt-4">
-     <div class="move">
-       <?php echo "Turf name : " . $row["turf_name"] . "<br>";?>
-       </div>
-     </div>
-     <div class="form-group mt-4">
-     <div class="move">
-       <?php echo "Turf place  : " . $row["turf_place"] . "<br>";?>
-       </div>
-     </div>
-     <div class="form-group mt-4">
-     <div class="move">
-       <?php echo " Amount : " . $row["amount"] . "<br>";?>
-       </div>
-     </div>
-     <div class="form-group mt-4">
-     <div class="mov">
-     <a  class="btn btn-primary" href="booknow.php?id=<?php echo $row['turf_id']?>">book now </a>
-       </div>
-       </div>
-        
-       </div>
-       </div>
-      
-       </div>
-        <?php
-			}
+  <div class="row">
+    <?php
+      // Loop through the query results to generate cards
+      while ($row = mysqli_fetch_assoc($result))
+       {
+    ?>
+    <div class="col-md-4">
+      <div class="card" style="border-radius:40px;">
+        <div class="form-group mt-4 move">
+          <?php echo '<img src="./images/' . $row["image"] . '" alt="customer image" height="200px" width="500px" class="center">'; ?><br>
+          <h3 class="tittle" style="color:black;"><?php echo "TURF ID: " . $row["turf_id"] . "<br>"; ?></h3><br>
+          <h4 class="tittle" style="color:black;"><?php echo "Turf name: " . $row["turf_name"] . "<br>"; ?></h4><br>
+          <h5 class="tittle" style="color:green;"><?php echo "Turf place: " . $row["turf_place"] . "<br>"; ?></h5><br>
+          <h6 class="tittle" style="color:black;"> <?php echo "Amount: " . $row["amount"] . "<br>"; ?></h6><br>
+          <a class="btn btn-primary nova" style="margin-bottom:10px;" href="booknow.php?id=<?php echo $row['turf_id'] ?>"> BOOK NOW </a><br>
+        </div>
+      </div>
+    </div>
+    <?php
+      }
+    ?>
+  </div>
+</div>
+
+
     
-  
-  
-	?>
-</section>
-
-    <!-- ======= About Section ======= -->
-    <!-- End Cta Section -->
-
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-   <!-- End Contact Section -->
 
   </main><!-- End #main -->
 

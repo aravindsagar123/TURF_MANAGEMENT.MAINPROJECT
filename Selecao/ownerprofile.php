@@ -110,6 +110,9 @@ border-bottom-right-radius: .3rem;
 .img{
   text-align:center;
 }
+#about{
+      background-color:white;
+    }
     </style>
 
   <meta charset="utf-8">
@@ -162,12 +165,13 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="ownerhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto active " href="ownerprofile.php"> view profile </a></li>
-          <li><a class="nav-link scrollto  " href="turf.php"> register turf </a></li>
-          <li><a class="nav-link scrollto" href="view_turf.php"> view  turf</a></li>
-          <li><a class="nav-link scrollto  " href="viewbooking_owner.php"> view booked turf </a></li>
-        <li><a class="top" href="login.php">logout</a> <li>
+        <li><a class="nav-link scrollto " href="ownerhome.php"> HOME </a></li>
+          <li><a class="nav-link scrollto active " href="ownerprofile.php"> VIEW PROFILE  </a></li>
+          <li><a class="nav-link scrollto" href="turf.php"> REGISTER TURF </a></li>
+          <li><a class="nav-link scrollto" href="view_turf.php"> VIEW TURF</a></li>
+          <li><a class="nav-link scrollto  " href="viewbooking_owner.php"> VIEW BOOKED TURF  </a></li>
+        
+        <li><a class="top" href="logout.php">LOGOUT </a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -184,7 +188,7 @@ border-bottom-right-radius: .3rem;
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown"> welcome to your  profile  page  </span></h2>
           <p class="animate__animated fanimate__adeInUp">" scroll down to select and get status of different turfs in the current page . "</p>
-          <a href="#profile" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
 
@@ -221,7 +225,7 @@ border-bottom-right-radius: .3rem;
   </section><!-- End Hero -->
 
   <main id="main">
-<section id="profile">
+<section id="about">
     <div class="containor">
       
         <?php
@@ -285,34 +289,7 @@ mysqli_close($con);
 </div>
         
 </section>
-    <!-- ======= About Section ======= -->
-    <!-- End About Section -->
-
-    <!-- ======= Features Section ======= -->
-    
-    <!-- ======= Cta Section ======= -->
    
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

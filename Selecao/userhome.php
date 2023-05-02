@@ -130,12 +130,12 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar"> 
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customer_profile.php"> view profile </a></li>
-          <li><a class="nav-link scrollto" href="booking_customer.php">view turf </a></li>
-          <li><a class="nav-link scrollto" href="feedback.php"> feedback </a></li>
-          <li><a class="nav-link scrollto" href="notificationcustomer.php"> view notification </a></li>
-        <li><a class="top" href="logout.php">logout</a> <li>
+          <li><a class="nav-link scrollto active" href="userhome.php"> HOME  </a></li>
+          <li><a class="nav-link scrollto " href="customer_profile.php"> VIEW PROFILE  </a></li>
+          <li><a class="nav-link scrollto" href="booking_customer.php"> VIEW TURF </a></li>
+          <li><a class="nav-link scrollto" href="feedback.php"> FEED BACK</a></li>
+          <li><a class="nav-link scrollto" href="notificationcustomer.php"> VIEW NOTIFICATION </a></li>
+        <li><a class="top" href="logout.php"> LOGOUT </a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -189,36 +189,10 @@ border-bottom-right-radius: .3rem;
   </section><!-- End Hero -->
 
   <main id="main">
-<section>
+<!-- <section >
         
 </section>
-    <!-- ======= About Section ======= -->
-    <!-- End About Section -->
-
-    <!-- ======= Features Section ======= -->
-    
-    <!-- ======= Cta Section ======= -->
-   
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
+     -->
 
   </main><!-- End #main -->
 

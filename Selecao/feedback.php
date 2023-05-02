@@ -100,6 +100,9 @@ h3{
     padding-top:10px;
     padding-left:30px;
 }
+#about{
+      background-color:white;
+    }
     </style>
 
   <meta charset="utf-8">
@@ -152,12 +155,12 @@ h3{
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="adminhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customer_profile.php">view profile</a></li>
-          <li><a class="nav-link scrollto" href="booking_customer.php"> view turf </a></li>
-          <li><a class="nav-link scrollto-active" href="notificationcustomer.php">view notification </a></li>
-          <li><a class="nav-link scrollto active" href="feedback.php"> feedback </a></li>
-        <li><a class="top" href="login.php">logout</a> <li>
+        <li><a class="nav-link scrollto " href="userhome.php"> HOME  </a></li>
+          <li><a class="nav-link scrollto " href="customer_profile.php"> VIEW PROFILE  </a></li>
+          <li><a class="nav-link scrollto" href="booking_customer.php"> VIEW TURF </a></li>
+          <li><a class="nav-link scrollto active" href="feedback.php"> FEED BACK</a></li>
+          <li><a class="nav-link scrollto" href="notificationcustomer.php"> VIEW NOTIFICATION </a></li>
+        <li><a class="top" href="logout.php"> LOGOUT </a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -174,7 +177,7 @@ h3{
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown"> write some feed back </span></h2>
           <p class="animate__animated fanimate__adeInUp">" let use know what you think "</p>
-          <a href="#main" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
 
@@ -211,16 +214,16 @@ h3{
   </section><!-- End Hero -->
 
   <main id="main">
-<section id="main">
+<section id="about">
         <div class="conatinor">
-            <form method="post">
+            <form method="POST" onsubmit="return validateForm()">
 
 <div class="card" style="padding-right:100px; width:700px; margin-left:300px;">
     <h3><center>FEEDBACK</CENTER></H3>
     <div class="form group mt-4">
         <div class="novi">
        <label> message : </label>
-       <textarea type="text" name="message" placeholder="enter your message " value="message"></textarea> 
+       <input type="text" name="message" id="message" placeholder="enter your message"  onkeyup="clearmsg('sp1')"><br><span style="color:red;" id="sp1"></span>
        
      
 </div>
@@ -233,40 +236,14 @@ h3{
     </div>
     <div class="form group mt-4">
         <div class="nova">
-            <input class="btn btn-primary" type="submit" name="submit" value="submit" >
+            <input class="btn btn-primary" type="submit" name="submit" value="submit" onclick="return validateForm()"  >
 
 
 </div>
 </form>
     </div>
 </section>
-    <!-- ======= About Section ======= -->
-    <!-- End About Section -->
-
-    <!-- ======= Features Section ======= -->
     
-    <!-- ======= Cta Section ======= -->
-   
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
 
   </main><!-- End #main -->
 
@@ -307,6 +284,24 @@ h3{
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+function validateForm() 
+{
+  var message = document.getElementById("message").value;
+  
+  if (message=="")
+  {
+    document.getElementById("sp1").innerHTML = "Enter your message ";
+    return false; 
+  }
+  return true;
+}
+
+function clearmsg(sp)
+{
+  document.getElementById(sp).innerHTML = "";
+}
+          </script>
 
 </body>
 

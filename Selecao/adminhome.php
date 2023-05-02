@@ -86,6 +86,9 @@ border-bottom-right-radius: .3rem;
     backgroung-color:orange;
     transtion:0.5s;
 }
+#about{
+  background-color:white;
+}
     </style>
 
   <meta charset="utf-8">
@@ -138,14 +141,14 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customertable.php"> Customer </a></li>
-          <li><a class="nav-link scrollto" href="ownertable.php"> Owner </a></li>
-          <li><a class="nav-link scrollto" href="feedbackadmin.php"> Feedback </a></li>
-          <li><a class="nav-link scrollto" href="view_turf.php"> Turf </a></li>
-          <li><a class="nav-link scrollto" href="send_notification.php">Send notification </a></li>
-          <li><a class="nav-link scrollto" href="change_password.php"> Change password </a></li>
-        <li><a class="top" href="logout.php">Logout</a> <li>
+          <li><a class="nav-link scrollto active" href="adminhome.php">HOME </a></li>
+          <li><a class="nav-link scrollto " href="customertable.php"> CUSTOMER </a></li>
+          <li><a class="nav-link scrollto" href="ownertable.php">OWNER </a></li>
+          <li><a class="nav-link scrollto" href="feedbackadmin.php"> FEEDBACK  </a></li>
+          <li><a class="nav-link scrollto" href="viewturf_admin.php"> TURF </a></li>
+          <li><a class="nav-link scrollto" href="send_notification.php"> SEND NOTIFICATION </a></li>
+          <li><a class="nav-link scrollto" href="change_password.php"> CHANGE PASSWORD</a></li>
+        <li><a class="top" href="logout.php"> LOGOUT</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -160,9 +163,9 @@ border-bottom-right-radius: .3rem;
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown"> welcome to admin dashboard </span></h2>
-          <p class="animate__animated fanimate__adeInUp">" scroll down to select and get status of different turfs in the current page . "</p>
-          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
+          <h2 class="animate__animated animate__fadeInDown">welcome to admin dashboard</h2>
+          <p class="animate__animated fanimate__adeInUp"></p>
+          
         </div>
       </div>
 
@@ -199,37 +202,10 @@ border-bottom-right-radius: .3rem;
   </section><!-- End Hero -->
 
   <main id="main">
-<section>
+<!-- <section id="about">
         
 </section>
-    <!-- ======= About Section ======= -->
-    <!-- End About Section -->
-
-    <!-- ======= Features Section ======= -->
-    
-    <!-- ======= Cta Section ======= -->
-   
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
-
+   -->
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

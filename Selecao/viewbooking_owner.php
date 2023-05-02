@@ -97,7 +97,45 @@ border-bottom-right-radius: .3rem;
 }
 th,td,tr{
     text-align:center;
+  
 }
+#styledtable{
+        
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+#styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+#styled-table th,
+#styled-table td {
+    padding: 12px 15px;
+}
+#styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+#styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+#styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+   #styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}    
+#about{
+      background-color:white;
+    }
     </style>
 
   <meta charset="utf-8">
@@ -150,13 +188,13 @@ th,td,tr{
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="ownerhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto " href="ownerprofile.php"> view  profile </a></li>
-          <li><a class="nav-link scrollto" href="turf.php"> register turf </a></li>
-          <li><a class="nav-link scrollto" href="view_turf.php"> view turf  </a></li>
-                    <li><a class="nav-link scrollto active " href="viewbooking_owner.php"> view booked turfs</a></li>
-          
-        <li><a class="top" href="logout.php">Logout</a> <li>
+        <li><a class="nav-link scrollto " href="ownerhome.php"> HOME </a></li>
+          <li><a class="nav-link scrollto " href="ownerprofile.php"> VIEW PROFILE  </a></li>
+          <li><a class="nav-link scrollto" href="turf.php"> REGISTER TURF </a></li>
+          <li><a class="nav-link scrollto" href="view_turf.php"> VIEW TURF</a></li>
+          <li><a class="nav-link scrollto active " href="viewbooking_owner.php"> VIEW BOOKED TURF  </a></li>
+        
+        <li><a class="top" href="logout.php">LOG OUT</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -210,10 +248,10 @@ th,td,tr{
   </section><!-- End Hero -->
 
   <main id="main">
-<section id="main">
+<section id="about">
     <div class="container">
-        <table class="table table-bordered">
-            <tr>
+        <table class="table table-bordered" id="styledtable">
+            <tr class="active-row">
                 <th> BOOKING ID </th>
                 <th> TURF NAME </th>
                 <th> FROM DATE </th>
@@ -246,33 +284,7 @@ th,td,tr{
 
         
 </section>
-    <!-- ======= About Section ======= -->
-    <!-- End About Section -->
-
-    <!-- ======= Features Section ======= -->
     
-    <!-- ======= Cta Section ======= -->
-   
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
 
   </main><!-- End #main -->
 

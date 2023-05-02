@@ -15,7 +15,10 @@ if (isset($_POST['send']))
   if (mysqli_query($con, $sql)) 
   {
     echo '<script>alert("Notification sent successfully")</script>';
-  } else {
+    header('location:send_notification.php');
+  } 
+  else
+   {
     echo "Error sending notification: " . mysqli_error($con);
   }
 }
@@ -103,6 +106,9 @@ border-bottom-right-radius: .3rem;
   text-align:centre;
   padding-bottom:10px;
 }
+#about{
+      background-color:white;
+    }
     </style>
 
   <meta charset="utf-8">
@@ -155,14 +161,14 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customertable.php"> customer </a></li>
-          <li><a class="nav-link scrollto" href="ownertable.php"> owner </a></li>
-          <li><a class="nav-link scrollto" href="feedbackadmin.php"> feedback </a></li>
-          <li><a class="nav-link scrollto" href="viewturf_admin.php"> Turf </a></li>
-          <li><a class="nav-link scrollto active " href="send_notification.php"> send notification</a></li>
-          <li><a class="nav-link scrollto" href="change_password.php"> change password </a></li>
-        <li><a class="top" href="logout.php">logout</a> <li>
+        <li><a class="nav-link scrollto " href="adminhome.php">HOME </a></li>
+          <li><a class="nav-link scrollto " href="customertable.php"> CUSTOMER </a></li>
+          <li><a class="nav-link scrollto  " href="ownertable.php">OWNER </a></li>
+          <li><a class="nav-link scrollto" href="feedbackadmin.php"> FEEDBACK  </a></li>
+          <li><a class="nav-link scrollto" href="viewturf_admin.php"> TURF </a></li>
+          <li><a class="nav-link scrollto active" href="send_notification.php"> SEND NOTIFICATION </a></li>
+          <li><a class="nav-link scrollto" href="change_password.php"> CHANGE PASSWORD</a></li>
+        <li><a class="top" href="logout.php"> LOGOUT</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -216,13 +222,13 @@ border-bottom-right-radius: .3rem;
   </section><!-- End Hero -->
 
   <main id="main">
-<section id="main">
-    <form method="POST">
+<section id="about">
+    <form method="POST" onsubmit="return validateForm()">
     <div class="container">
         <div class="card" style="width:50%; margin-left:250px;">
         <h2><center> SENT NOTIFICATION </CENTER></h2>
             <div class="form-group mt-4">
-              <div class="nova">
+              <div class="nova" style="text-align:center;">
                 
              <?php
               echo "<select name='customer_id'>";
@@ -235,14 +241,14 @@ echo "</select>";
 </div>
         </div>
         <div class="form-group mt-4">
-        <div class="nova">
+        <div class="nova" style="text-align:center">
           <label> notification : </label>
-        <input  type="text" class="notification" name="notification" value="notification">
+        <input  type="text" class="notification" name="notification" id="notification"  placeholder="text notification"  onkeyup="clearmsg('sp1')" ><br><span style="color:red;" id="sp1"></span>
 </div>
-        </div>
+</div>
         <div class="form-group mt-4">
-        <div class="nova">
-                 <input type="submit" class="btn btn-primary" name="send" value="send" >
+        <div class="nova" style="text-align:center;">
+                 <input type="submit" class="btn btn-primary" name="send" value="send" onclick="return validateForm()" >
 </div>
         </div>
 </div>
@@ -250,34 +256,7 @@ echo "</select>";
 </div>
 </form>
 </section>
-    <!-- ======= About Section ======= -->
-    <!-- End About Section -->
-
-    <!-- ======= Features Section ======= -->
-    
-    <!-- ======= Cta Section ======= -->
    
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -317,6 +296,26 @@ echo "</select>";
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+          function validateForm() 
+{
+  var notification = document.getElementById("notification").value;
+ 
+
+  if (notification=="")
+  {
+    document.getElementById("sp1").innerHTML = "Enter your text ";
+    return false; 
+  }
+  
+   return true;
+}
+
+function clearmsg(sp)
+{
+  document.getElementById(sp).innerHTML = "";
+}
+          </script>
 
 </body>
 

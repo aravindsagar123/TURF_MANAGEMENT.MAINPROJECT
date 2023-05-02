@@ -86,6 +86,43 @@ th,td,tr{
   text-align:center;
   padding-top:20px;
 }
+#styledtable{
+        
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+    #styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+#styled-table th,
+#styled-table td {
+    padding: 12px 15px;
+}
+#styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+#styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+#styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+   #styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}    
+#about{
+      background-color:white;
+    }
     </style>
 
   <meta charset="utf-8">
@@ -138,14 +175,14 @@ th,td,tr{
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="adminhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customertable.php"> Customer </a></li>
-          <li><a class="nav-link scrollto" href="ownertable.php"> Owner </a></li>
-          <li><a class="nav-link scrollto" href="feedbackadmin.php"> Feedback </a></li>
-          <li><a class="nav-link scrollto active " href="viewturf_admin.php"> Turf </a></li>
-          <li><a class="nav-link scrollto" href="send_notification.php">Send notification </a></li>
-          <li><a class="nav-link scrollto" href="change_password.php"> Change password </a></li>
-        <li><a class="top" href="logout.php">Logout</a> <li>
+        <li><a class="nav-link scrollto " href="adminhome.php">HOME </a></li>
+          <li><a class="nav-link scrollto " href="customertable.php"> CUSTOMER </a></li>
+          <li><a class="nav-link scrollto " href="ownertable.php">OWNER </a></li>
+          <li><a class="nav-link scrollto" href="feedbackadmin.php"> FEEDBACK  </a></li>
+          <li><a class="nav-link scrollto active" href="viewturf_admin.php"> TURF </a></li>
+          <li><a class="nav-link scrollto" href="send_notification.php"> SEND NOTIFICATION </a></li>
+          <li><a class="nav-link scrollto" href="change_password.php"> CHANGE PASSWORD</a></li>
+        <li><a class="top" href="logout.php"> LOGOUT</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -200,15 +237,15 @@ th,td,tr{
 
   <main id="main">
 
-<section id="turf">
+<section id="about">
 <div class="one">
-    <center><table class="table table-bordered" style="width:95%;">
-        <tr>
-            <th> turf name  </th>
-            <th> turf place  </th>
-            <th> price  </th>
+    <center><table class="table table-bordered" style="width:95%;" id="styledtable">
+        <tr class="active-row">
+            <th> TURF NAME  </th>
+            <th> TURF PLACE </th>
+            <th> PRICE  </th>
            
-            <th> image </th>
+            <th> IMAGE </th>
             
 <?php
 while($row= mysqli_fetch_assoc($data))
@@ -227,34 +264,7 @@ while($row= mysqli_fetch_assoc($data))
 ?>
 </div>
 </section>
-    <!-- ======= About Section ======= -->
-    <!-- End About Section -->
-
-    <!-- ======= Features Section ======= -->
     
-    <!-- ======= Cta Section ======= -->
-   
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

@@ -93,6 +93,9 @@ border-bottom-right-radius: .3rem;
     text-align:center;
     padding-bottom:10px;
 }
+#about{
+      background-color:white;
+    }
     </style>
 
   <meta charset="utf-8">
@@ -145,14 +148,14 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customertable.php"> customer </a></li>
-          <li><a class="nav-link scrollto" href="ownertable.php"> owner </a></li>
-          <li><a class="nav-link scrollto active" href="feedbackadmin.php"> feedback </a></li>
-          <li><a class="nav-link scrollto " href="viewturf_admin.php"> Turf </a></li>
-          <li><a class="nav-link scrollto  " href="send_notification.php"> send notification </a></li>
-          <li><a class="nav-link scrollto" href="change_password.php"> change password </a></li>
-        <li><a class="top" href="logout.php">logout</a> <li>
+        <li><a class="nav-link scrollto " href="adminhome.php">HOME </a></li>
+          <li><a class="nav-link scrollto " href="customertable.php"> CUSTOMER </a></li>
+          <li><a class="nav-link scrollto" href="ownertable.php">OWNER </a></li>
+          <li><a class="nav-link scrollto active" href="feedbackadmin.php"> FEEDBACK  </a></li>
+          <li><a class="nav-link scrollto" href="viewturf_admin.php"> TURF </a></li>
+          <li><a class="nav-link scrollto" href="send_notification.php"> SEND NOTIFICATION </a></li>
+          <li><a class="nav-link scrollto" href="change_password.php"> CHANGE PASSWORD</a></li>
+        <li><a class="top" href="logout.php"> LOGOUT</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -206,14 +209,14 @@ border-bottom-right-radius: .3rem;
   </section><!-- End Hero -->
 
   <main id="main">
-<section id="main">
+<section id="about">
     <div class="container">
         <div class="row">
     <?php
 			while ($row = mysqli_fetch_assoc($data))
        {
         ?>
-<div class="card" style="width:25%; ">
+      <center><div class="card" style="width:25%; ;">
 <div class="form-group mt-4" >
           <div class="move">
        <?php echo"feedback id : " . $row["feedback_id"] . "<br>";?>
@@ -240,41 +243,14 @@ border-bottom-right-radius: .3rem;
        <input class="btn btn-danger" value="delete" name="delete">
        </div>
      </div>
-</div>
+</div></center>
        </div>
 </div>
 <?php
 }
 ?>
 </section>
-    <!-- ======= About Section ======= -->
-    <!-- End About Section -->
-
-    <!-- ======= Features Section ======= -->
     
-    <!-- ======= Cta Section ======= -->
-   
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

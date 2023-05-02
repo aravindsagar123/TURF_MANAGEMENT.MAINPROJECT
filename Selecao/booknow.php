@@ -229,7 +229,7 @@ border-bottom-right-radius: .3rem;
   <main id="main">
 <section id="main">
       <div class="container">
-        <form method="POST" >
+        <form method="POST" onsubmit="return validateForm()" >
           <div class="card" style="width:500px; padding-left:100px; margin-left:200px;">
             <?php
           while ($row = mysqli_fetch_assoc($result))
@@ -259,18 +259,18 @@ border-bottom-right-radius: .3rem;
          <div class="form-group mt-4">
           <div class="nova">
           <label> from date :</label>
-          <input type="date" name="fromdate" placeholder="fromdate" required>
+          <input type="date" id="fromdate" name="fromdate" placeholder="fromdate" required onkeyup="clearmsg('sp1')" value="" ><br><span style="color:red;" id="sp1"></span>
        </div>
           <div>
           <div class="form-group mt-4">
           <div class="nova">
             <label> to date : </label>
-          <input type="date" name="todate" placeholder="todate" required>
+          <input type="date" name="todate" id="todate"  placeholder="todate" required onkeyup="clearmsg('sp2')" value="" ><br><span style="color:red;" id="sp2"></span>
        </div>
           <div>
           <div class="form-group mt-4">
           <div class="nova">
-          <input type="submit" class="btn btn-primary" name="submit" value="submit">
+          <input type="submit" class="btn btn-primary" name="submit" value="submit" onclick="return validateForm()">
        </div>
         </div>
         </div>
@@ -347,6 +347,35 @@ border-bottom-right-radius: .3rem;
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+function validateForm() 
+{
+  var fromdate= document.getElementById("fromdate").value;
+  var todate = document.getElementById("todate").value;
+  
+
+  if (fromdate=="")
+  {
+    document.getElementById("sp1").innerHTML = "Enter fromdate ";
+    return false; 
+  }
+  
+  if (todate=="")
+  {
+    document.getElementById("sp2").innerHTML = "Enter todate ";
+    return false; 
+  }
+  
+  
+        
+  return true;
+}
+
+function clearmsg(sp)
+{
+  document.getElementById(sp).innerHTML = "";
+}
+</script>
 
 </body>
 

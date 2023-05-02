@@ -112,6 +112,9 @@ border-bottom-right-radius: .3rem;
 .nic{
   text-align:center;
 }
+#about{
+      background-color:white;
+    }
     </style>
 
   <meta charset="utf-8">
@@ -164,12 +167,12 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="userhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto active " href="customer_profile.php">view profile</a></li>
-          <li><a class="nav-link scrollto" href="booking_customer.php"> view turf</a></li>
-          <li><a class="nav-link scrollto" href="notificationcustomer.php"> view notification </a></li>
-          <li><a class="nav-link scrollto" href="feedback.php"> feedback </a></li>
-        <li><a class="top" href="login.php">logout</a> <li>
+        <li><a class="nav-link scrollto " href="userhome.php"> HOME  </a></li>
+          <li><a class="nav-link scrollto active " href="customer_profile.php"> VIEW PROFILE  </a></li>
+          <li><a class="nav-link scrollto" href="booking_customer.php"> VIEW TURF </a></li>
+          <li><a class="nav-link scrollto" href="feedback.php"> FEED BACK</a></li>
+          <li><a class="nav-link scrollto" href="notificationcustomer.php"> VIEW NOTIFICATION </a></li>
+        <li><a class="top" href="logout.php"> LOGOUT </a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -186,7 +189,7 @@ border-bottom-right-radius: .3rem;
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown"> welcome to your  profile  page  </span></h2>
           <p class="animate__animated fanimate__adeInUp">" scroll down to select and get status of different turfs in the current page . "</p>
-          <a href="#profile" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto"> scroll down </a>
         </div>
       </div>
 
@@ -223,7 +226,7 @@ border-bottom-right-radius: .3rem;
   </section><!-- End Hero -->
 
   <main id="main">
-<section id="profile">
+<section id="about">
     <div class="containor">
       
         <?php

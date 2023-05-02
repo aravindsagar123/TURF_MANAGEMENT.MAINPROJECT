@@ -10,6 +10,21 @@
     {
       color:blue;
     }
+    #about{
+      background-color:lightgreen;
+    }
+    #services{
+background-color:lightyellow;
+    }
+    #portfolio{
+      background-color:khaki;
+    }
+    #contact{
+      background-color:white;
+    }
+    #team{
+      background-color: aquamarine;
+    }
     </style>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -118,10 +133,10 @@
         <use xlink:href="#wave-path" x="50" y="3" fill="lightgreen">
       </g>
       <g class="wave2">
-        <use xlink:href="#wave-path" x="50" y="0" fill="violet">
+        <use xlink:href="#wave-path" x="50" y="0" fill="darkgreen">
       </g>
       <g class="wave3">
-        <use xlink:href="#wave-path" x="50" y="9" fill="yellow">
+        <use xlink:href="#wave-path" x="50" y="9" fill="green">
       </g>
     </svg>
 
@@ -130,7 +145,7 @@
   <main id="main">
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <section id="about" class="about" >
       <div class="container">
 
         <div class="section-title" data-aos="zoom-out">
@@ -352,17 +367,7 @@
         </div>
 
       </div>
-    </section><!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
+    </section>
     <!-- ======= Team Section ======= -->
     <section id="team" class="team">
       <div class="container">

@@ -9,12 +9,13 @@ include "connection.php";
         $password = $_POST['old_password'];
         $new_password = $_POST['new_password'];
         $hash = password_hash($new_password, PASSWORD_DEFAULT);
-        if(password_verify($password,$row['password']) )
+        if(password_verify($password,$row['password']))
         {
             $sql = mysqli_query($con, "UPDATE login SET password = '$hash' WHERE login_id='$id1'");
             if ($sql)
              {
                 echo"<script>alert('Password updated successfully!')</script>";
+                header('location:change_password.php');
             }
              else
              {
@@ -26,7 +27,6 @@ include "connection.php";
             echo "Old password does not match. Please try again.";
         }
     }
-
 $con->close();
 ?>
 <!DOCTYPE html>
@@ -65,7 +65,7 @@ border-top-right-radius: .3rem;
 border-bottom-right-radius: .3rem;
 }
 }
-.button1{
+button{
     padding:15px;
     border-radius:25px;
     color:black;
@@ -108,6 +108,13 @@ border-bottom-right-radius: .3rem;
     backgroung-color:orange;
     transtion:0.5s;
 }
+.nova{
+        text-align:center;
+        margin-rigth:50px;
+}
+#about{
+      background-color:white;
+    }
     </style>
 
   <meta charset="utf-8">
@@ -160,14 +167,14 @@ border-bottom-right-radius: .3rem;
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="adminhome.php"> Home </a></li>
-          <li><a class="nav-link scrollto " href="customertable.php"> customer </a></li>
-          <li><a class="nav-link scrollto" href="ownertable.php"> owner </a></li>
-          <li><a class="nav-link scrollto" href="feedbacktable.php"> feedback </a></li>
-          <li><a class="nav-link scrollto" href="viewturf_admin.php"> Turf </a></li>
-          <li><a class="nav-link scrollto  " href="send_notification.php"> send notification </a></li>
-          <li><a class="nav-link scrollto active" href="change_password.php"> change password </a></li>
-        <li><a class="top" href="logout.php">logout</a> <li>
+        <li><a class="nav-link scrollto " href="adminhome.php">HOME </a></li>
+          <li><a class="nav-link scrollto " href="customertable.php"> CUSTOMER </a></li>
+          <li><a class="nav-link scrollto  " href="ownertable.php"> OWNER </a></li>
+          <li><a class="nav-link scrollto" href="feedbackadmin.php"> FEEDBACK  </a></li>
+          <li><a class="nav-link scrollto" href="viewturf_admin.php"> TURF </a></li>
+          <li><a class="nav-link scrollto" href="send_notification.php"> SEND NOTIFICATION </a></li>
+          <li><a class="nav-link scrollto active" href="change_password.php"> CHANGE PASSWORD</a></li>
+        <li><a class="top" href="logout.php"> LOGOUT</a> <li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -221,49 +228,29 @@ border-bottom-right-radius: .3rem;
   </section><!-- End Hero -->
 
   <main id="main">
-<section id="main">
+<section id="about">
 
 <div class="container">
-	<form method="POST">
-    <div class="card" style="width:550px; margin-left:250px;">
+	<form method="POST" onsubmit="return validateForm()">
+    <div class="card" style="width:550px; margin-left:380px;">
     <h2><center>Change Password</center></h2><br>
-		<label for="current_password">Current Password:</label>
-		<input type="password" name="old_password" placeholder="enter your old password *" required><br>
-		<label for="new_password">New Password:</label>
-		<input type="password" name="new_password" placeholder="enter your new password *"required><br>
-		<button class="btn btn-primary" name="submit" value="submit" type="submit" > submit </button>
-
+    
+		<label for="current_password" style=" padding-left:200px;">CURRENT PASSWORD :</label>
+    <div class="nova">
+		<input type="password" name="old_password" style="width:50%;" id="old_password"  placeholder="enter your old password *" required onkeyup="clearmsg('sp1')"><br><span style="color:red;" id="sp1"></span><br>
+</div>
+		<label for="new_password" style="text-align:center;"> NEW PASSWORD :</label>
+    <div class="nova">
+		<input type="password" name="new_password" style="width:50%;" id="new_password" placeholder="enter your new password *"required onkeyup="clearmsg('sp2')"><br><span style="color:red;" id="sp2"></span><br>
+</div>
+<div class="btn">
+		<button class="btn btn-primary" name="submit" value="submit" type="submit" onclick="return validateForm()"> submit </button>
+</div>
+</div>
 	</form>
 </div>
 </section>
-    <!-- ======= About Section ======= -->
-    <!-- End About Section -->
-
-    <!-- ======= Features Section ======= -->
     
-    <!-- ======= Cta Section ======= -->
-   
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -303,6 +290,33 @@ border-bottom-right-radius: .3rem;
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+          function validateForm() 
+{
+  var oldpassword = document.getElementById("old_password").value;
+  var newpassword = document.getElementById("new_password").value;
+  
+
+  if (oldpassword=="")
+  {
+    document.getElementById("sp1").innerHTML = "Enter your old password ";
+    return false; 
+  }
+  
+  if (newpassword=="")
+  {
+    document.getElementById("sp2").innerHTML = "Enter your new password ";
+    return false; 
+  }
+  return true;
+}
+
+function clearmsg(sp)
+{
+  document.getElementById(sp).innerHTML = "";
+}
+          </script>
+
 
 </body>
 

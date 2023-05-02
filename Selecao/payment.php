@@ -11,6 +11,7 @@ else
   $sql=mysqli_query($con,"SELECT turf.amount, booking.booking_id, booking.customer_id FROM turf INNER JOIN booking ON turf.turf_id = booking.turf_id WHERE customer_id='$id1' order by booking_id desc");
   $row=mysqli_fetch_assoc($sql);  
 ?> 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -234,34 +235,7 @@ border-bottom-right-radius: .3rem;
   </div>
 </section>
 
-    <!-- ======= About Section ======= -->
-    <!-- End About Section -->
-
-    <!-- ======= Features Section ======= -->
     
-    <!-- ======= Cta Section ======= -->
-   
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -318,6 +292,7 @@ if(isset($_POST['submit']))
      {
         echo'<script>alert(" booking successfull")</script>';
         header('location:booking_customer.php');
+        
 
   }  
   }

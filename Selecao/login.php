@@ -9,12 +9,14 @@ $password=$_POST['password'];
 $data=mysqli_query($con,"SELECT * FROM `login` WHERE username='$username' ");
     if($data)
     {
+
         $row=mysqli_fetch_assoc($data);
         $hash=password_verify($password,$row['password']);
         $count=mysqli_num_rows($data);
         $type = $row['type'];
         if ($count==1 && $type == 'admin' && $hash==$password)
         {
+
           $_SESSION['id']=$row['login_id'];
           $_SESSION['username']=$row['email'];
           $id=$_SESSION['id'];
@@ -22,33 +24,48 @@ $data=mysqli_query($con,"SELECT * FROM `login` WHERE username='$username' ");
         }
       elseif($count==1 && $type == 'customer' && $hash==$password)
       {
+
         $_SESSION['id']=$row['login_id'];
         $id=$_SESSION['id'];
         $ara=mysqli_query($con,"SELECT `aproval_status` FROM `customer_registration` WHERE `customer_id`='$id'");   
         $row1=mysqli_fetch_assoc($ara);
         if ($row1['aproval_status']==1)  
         {
+
           header("location:userhome.php");
+
         } 
+
         else
+
         {
+
            echo " you need admin approval ";
+           
         }
+
       }
         elseif($count==1 && $type == 'owner' && $hash==$password)
         {
+
           $_SESSION['id']=$row['login_id'];
           $id=$_SESSION['id'];
           $ara=mysqli_query($con, "SELECT `aproval_status` FROM `owner_registration` WHERE `owner_id`='$id'");
           $row1=mysqli_fetch_assoc($ara);
-          if ($row1['aproval_status']==1)  
+          if ($row1['aproval_status']==1) 
+
         {
+
           header("location:ownerhome.php");
         } 
+
         else
+
         {
+
            echo " you need admin approval ";
         }
+
         }
         else 
           {
@@ -74,6 +91,10 @@ $data=mysqli_query($con,"SELECT * FROM `login` WHERE username='$username' ");
     sp15{
         color:black;
     }
+    .nova{
+      padding-left:400px;
+    }
+
     .gradient-custom-2 {
 /* fallback for old browsers */
 background:green;
@@ -150,6 +171,12 @@ border-bottom-right-radius: .3rem;
   background-color:red;
   transition:0.7s;
   color:white;
+}
+label{
+   text-align:center;
+}
+#about{
+  background-color:white;
 }
 
     </style>
@@ -265,22 +292,30 @@ border-bottom-right-radius: .3rem;
 <section id="about">
 <div class="container">  
   <div class="row">
-    <div class="card" style="width:400px;margin-left:250px;">
+    <div class="card" style="width:400px;margin-left:480px;">
       <div class="card-title">
-      <form method="POST" required >
-        <h2 style="padding-top:10px;"><center> Login Form </center>  </h2>  
+      <form method="POST" onsubmit="return validateForm()" required >
+        <h2 style="padding-top:10px;"> <center> LOGIN FORM </center>  </h2>  
         <form>  
-            <div class="form-group"> <label for="email" style="padding-top:10px;"> User Name</label> <input type="email" class="form-control" name="username" placeholder="Enter username * " style="width:350px" required> </div> <br> 
-            <div class="form-group"> <label for="password" style="padding-top:10px;"> Password</label> <input type="password" class="form-control" name="password" placeholder="Enter password *" style="width:350px" required> </div> <br> 
+            <div class="form-group"> 
+              <center><label for="email" style="padding-top:10px;"> USER NAME :</label><center>
+              <input type="email" class="form-control" id="username" name="username" placeholder="Enter username * " style="width:350px"  onkeyup="clearmsg('sp1')"><br><span style="color:red;" id="sp1"></span>
+             </div>  
+            <div class="form-group"> 
+              <center><label for="password" style="padding-top:10px;"> PASSWORD :</label><center>
+               <input type="password" class="form-control" id="password" name="password" placeholder="Enter password *" style="width:350px"  onkeyup="clearmsg('sp2')"><br><span style="color:red;" id="sp2"></span>
+              </div>  <br>
             <select class="form-select" aria-label="Default select example" name="type" style="width:350px" >
-  <option selected> select type </option>
+  <option selected> select type  </option>
   <option value="admin">admin</option>
   <option value="customer">customer</option>
   <option value="owner">owner</option>
 </select><br>
             <div class="checkbox"> <label><input type="checkbox"> Remember me</label> </div><br>
-             <button type="submit" class="btn btn-primary p-1" name="submit" > Submit </button> </form> <br> 
-           <div class="btn">
+            <div class="nova">
+             <button type="submit" class="btn btn-primary p-1" name="submit" style="margin-left:90px; margin-bottom:10px;" onclick="return validateForm()" > Submit </button> </form> <br> 
+</div>
+           <div class="btn" style="margin-left:90px; margin-bottom:10px;">
            <a href="customer_registration.php"> <button class="btn btn-primary p-1" id="bt1"> customer </button></a>
            <a href="owner_registration.php"> <button class="btn btn-primary p-1" id="bt2"> owner</button></a>
 </div>
@@ -291,33 +326,7 @@ border-bottom-right-radius: .3rem;
   </div>
     
 </section>
-    <!-- ======= About Section ======= -->
-    <!-- End About Section -->
-
-    <!-- ======= Features Section ======= -->
     
-    <!-- ======= Cta Section ======= -->
-   
-    <!-- ======= Services Section ======= -->
-   <!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    ><!-- End Testimonials Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <!-- End Contact Section -->
 
   </main><!-- End #main -->
 
@@ -358,6 +367,32 @@ border-bottom-right-radius: .3rem;
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+          function validateForm() 
+{
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+  
+
+  if (username=="")
+  { 
+    document.getElementById("sp1").innerHTML = "Enter your username";
+    return false; 
+  }
+  
+  if (password=="")
+  {
+    document.getElementById("sp2").innerHTML = "Enter your password ";
+    return false; 
+  }  
+  return true;
+}
+
+function clearmsg(sp)
+{
+  document.getElementById(sp).innerHTML = "";
+}
+          </script>
 
 </body>
 
