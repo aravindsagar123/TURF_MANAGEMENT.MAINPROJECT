@@ -1,11 +1,10 @@
-<!-- <?php
-// include 'connection.php';
+<?php
+include 'connection.php';
 // if(!isset($_SESSION['id']))
 // {
 //   header('location:login.php');
 // }
-// var_dump($_SESSION['id']);
-?> -->
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,11 +20,12 @@
     sp15{
         color:black;
     }
-    .gradient-custom-2 {
-/* fallback for old browsers */
+    .gradient-custom-2 
+    {
+
 background:green;
 
-/* Chrome 10-25, Safari 5.1-6 */
+
 background: -webkit-linear-gradient(to right, green, green);
 
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
